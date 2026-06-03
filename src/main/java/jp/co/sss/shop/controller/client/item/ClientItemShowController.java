@@ -1,6 +1,8 @@
 package jp.co.sss.shop.controller.client.item;
 
-import org.springframework.beans.BeanUtils;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.sss.shop.bean.ItemBean;
-import jp.co.sss.shop.entity.Category;
 import jp.co.sss.shop.entity.Item;
 import jp.co.sss.shop.repository.ItemRepository;
 import jp.co.sss.shop.service.BeanTools;
@@ -49,23 +50,20 @@ public class ClientItemShowController {
 	 * 商品詳細画面 表示処理
 	 *
 	 * @param model    Viewとの値受渡し
-	 * @return "detail" トップ画面
+	 * @return "detail" 商品の詳細画面
 	 */
 	@GetMapping("/client/item/detail/{id}")
 	public String detail(@PathVariable Integer id,Model model) {
 		//主キーがidの商品のレコードを取得
-		Item item = itemRepository.getReferenceById(id);
-		//itemBeanオブジェクトを生成
-		ItemBean itemBean = new ItemBean();
-		//itemBeanにitemをコピー
-		BeanUtils.copyProperties(item,itemBean);
-		//categoryオブジェクトにitemのcategoryを代入
-		Category category = item.getCategory();
-		//itemBeanにcategoryidとcategorynameをセット
-		itemBean.setCategoryId(category.getId());
-		itemBean.setCategoryName(category.getName());
-		//リクエストスコープにitemBeanを保存
-		model.addAttribute("item",itemBean);
+		Item item = itemRepository.findById(id).orElse(null);
+		//Itemの格納するList
+		List<Item>entityList = new ArrayList<>();
+		//リストにitemを入れる
+		entityList.add(item);
+		//beanToolsサービスに渡し、ItemBean型のList beanListに戻る
+		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
+//		//リクエストスコープにbeanListを保存
+		model.addAttribute("item",beanList.get(0));
 		return "client/item/detail";
 		
 
