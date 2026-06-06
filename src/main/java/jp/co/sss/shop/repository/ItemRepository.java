@@ -1,5 +1,7 @@
 package jp.co.sss.shop.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sss.shop.entity.Item;
-
 /**
  * itemsテーブル用リポジトリ
  *
@@ -42,4 +43,15 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	 * @return 商品エンティティ
 	 */
 	public Item findByNameAndDeleteFlag(String name, int notDeleted);
+	
+	/**
+	 * 削除フラグを条件に注文商品数が多い順に検索
+	 * @param notDeleted 削除フラグ
+	 * @return 商品エンティティ
+	 */
+	@Query("SELECT i FROM Item i LEFT JOIN OrderItem o ON o.item = i WHERE i.deleteFlag = :deleteFlag GROUP BY i.id, i.name, i.price, i.stock, i.description, i.image, i.category, i.insertDate, i.deleteFlag ORDER BY COUNT(o) DESC")
+    List<Item> findByDeleteFlagOrderByOrderItemCountDesc(Integer deleteFlag);
+	
+	List<Item> findByDeleteFlagOrderByInsertDateDesc(Integer deleteFlag);
+
 }

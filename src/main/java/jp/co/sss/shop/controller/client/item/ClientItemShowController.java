@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jp.co.sss.shop.bean.ItemBean;
 import jp.co.sss.shop.entity.Item;
+import jp.co.sss.shop.entity.OrderItem;
 import jp.co.sss.shop.repository.ItemRepository;
+import jp.co.sss.shop.repository.OrderItemRepository;
 import jp.co.sss.shop.service.BeanTools;
+import jp.co.sss.shop.util.Constant;
 
 /**
  * 商品管理 一覧表示機能(一般会員用)のコントローラクラス
@@ -28,13 +31,14 @@ public class ClientItemShowController {
 	 */
 	@Autowired
 	ItemRepository itemRepository;
-
+	@Autowired
+	OrderItemRepository orderItemRepository;
 	/**
 	 * Entity、Form、Bean間のデータコピーサービス
 	 */
 	@Autowired
 	BeanTools beanTools;
-	
+
 	/**
 	 * トップ画面 表示処理
 	 *
@@ -43,7 +47,29 @@ public class ClientItemShowController {
 	 */
 	@RequestMapping(path = "/" , method = { RequestMethod.GET, RequestMethod.POST })
 	public String index(Model model) {
-	
+		
+		//注文商品一覧を全件検索
+		List<OrderItem> orderItemEntityList = orderItemRepository.findAll();
+		//Itemの格納するList
+		List<Item> entityList = new ArrayList<>();
+		
+		//orderItemEntityListに値が入っているか判定する
+		if(orderItemEntityList != null) {
+			//entityListに削除フラグが0で注文商品が多い順に検索
+			entityList = itemRepository.findByDeleteFlagOrderByOrderItemCountDesc(Constant.NOT_DELETED);
+			//リクエストスコープにsortType(売れ筋順)を保存
+			model.addAttribute("sortType",2);
+		}else {
+			//entityListに削除フラグが0で新しく登録した順に検索
+			entityList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(Constant.NOT_DELETED);
+			//リクエストスコープにsortType(新規登録順)を保存
+			model.addAttribute("sortType",Constant.DEFAULT_SORT_TYPE);
+		}
+		
+		//beanToolsサービスに渡し、ItemBean型のList beanListに戻る
+		List<ItemBean> beanList =beanTools.copyEntityListToItemBeanList(entityList);
+		//リクエストスコープにbeanListを保存
+		model.addAttribute("items",beanList);
 		return "index";
 	}
 	/**
@@ -62,10 +88,8 @@ public class ClientItemShowController {
 		entityList.add(item);
 		//beanToolsサービスに渡し、ItemBean型のList beanListに戻る
 		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
-//		//リクエストスコープにbeanListを保存
+		//リクエストスコープにbeanListを保存
 		model.addAttribute("item",beanList.get(0));
 		return "client/item/detail";
-		
-
 	}
 }
