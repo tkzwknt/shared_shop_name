@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import jp.co.sss.shop.bean.BasketBean;
 import jp.co.sss.shop.bean.CategoryBean;
-import jp.co.sss.shop.bean.FavoriteBean;
 import jp.co.sss.shop.bean.ItemBean;
 import jp.co.sss.shop.bean.OrderBean;
 import jp.co.sss.shop.bean.OrderItemBean;
@@ -223,28 +222,26 @@ public class BeanTools {
 	}
 	
 	/**
-	 * Favoriteエンティティのリストから、FavoriteBeanのリストを生成
+	 * Favoriteエンティティのリストから、ItemBeanのリストを生成
 	 * 
 	 * @param Favorite エンティティのリスト
-	 * @return FavoriteBeanのリスト 小計も含む注文商品情報リスト
+	 * @return ItemBeanのリスト 
 	 */
-	public List<FavoriteBean>copyrFavoriteBean(List<Favorite> favorite){
+	public List<ItemBean>copyrFavoriteBean(List<Favorite> favorite){
 		
 		//お気に入り情報の取得
-		 List<FavoriteBean> favoriteBeanList = new ArrayList<>();
+		 List<ItemBean> itemBeanList = new ArrayList<>();
 		 for (Favorite favoriteEntity : favorite) {
-			 FavoriteBean favoriteBean = new FavoriteBean();
-			 favoriteBean.setItemId(favoriteEntity.getItem().getId());
-			 favoriteBean.setUserId(favoriteEntity.getUser().getId());
-			 favoriteBean.setItemName(favoriteEntity.getItem().getName());
-			 favoriteBean.setPrice(favoriteEntity.getItem().getPrice());
-			 favoriteBean.setDescription(favoriteEntity.getItem().getDescription());
-			 favoriteBean.setImage(favoriteEntity.getItem().getImage());
-			 favoriteBean.setCategoryName(favoriteEntity.getItem().getCategory().getName());
+			 ItemBean itemBean = new ItemBean();
+			 //itemBeanにコピー
+			 BeanUtils.copyProperties(favoriteEntity.getItem(), itemBean);
+			 itemBean.setCategoryId(favoriteEntity.getItem().getCategory().getId());
+			 itemBean.setCategoryName(favoriteEntity.getItem().getCategory().getName());
 			 
-			 favoriteBeanList.add(favoriteBean);
+			 
+			 itemBeanList.add(itemBean);
 		}
-		 return favoriteBeanList;
+		 return itemBeanList;
 		 
 	}
 }
