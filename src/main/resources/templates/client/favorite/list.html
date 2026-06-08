@@ -19,7 +19,7 @@
     <!--model.addAttribute("favoriteItems", favoriteBeanList); -->
    <div class="product-grid" th:if="${favoriteItems != null and !#lists.isEmpty(favoriteItems)}">
         <article class="product-card" th:each="favorite : ${favoriteItems}">
-            <a class="product-card__image" th:href="@{/client/item/detail/{id}(id=${favorite.itemId})}">
+            <a class="product-card__image" th:href="@{/client/item/detail/{id}(id=${favorite.id})}">
 				<!--表示  商品画像-->
                <div class="item_image_area">
 					<img th:if="${favorite.image != null}" th:src="@{/images/{image}(image=${favorite.image})}"></img>
@@ -29,7 +29,7 @@
             </a>
             <!--表示  商品名・カテゴリ・説明文・価格-->
             <div class="product-card__body">
-                <h2 th:text="${favorite.itemName}">商品名</h2>
+                <h2 th:text="${favorite.name}">商品名</h2>
                 <p class="product-card__description" th:text="${favorite.description}">説明文</p>
                 <div class="product-card__meta">
                     <span th:text="${favorite.categoryName}">CATEGORY</span><br>
@@ -37,12 +37,12 @@
                 </div>
                 <!--ボタン  詳細を見る・削除-->
                 <div class="product-card__actions">
-                    <form th:action="@{/client/item/detail/{id}(id=${favorite.itemId})}" method="post">
-                        <input type="hidden" name="id" th:value="${favorite.itemId}">
+                    <form th:action="@{/client/item/detail/{id}(id=${favorite.id})}" method="post">
+                        <input type="hidden" name="id" th:value="${favorite.id}">
                         <button class="button button--ghost" type="submit">詳細を見る</button>
                     </form>
-                    <form th:action="@{/favorite/delete}" method="post">
-                        <input type="hidden" name="id" th:value="${favorite.itemId}">
+                    <form th:action="@{/client/favorite/delete}" method="post">
+                        <input type="hidden" name="id" th:value="${favorite.id}">
                         <button class="button button--ghost" type="submit">♥</button>
                     </form>
                 </div>
@@ -54,7 +54,7 @@
        
         <div class="favorite-empty__body">
             <h2>お気に入り商品はまだありません。</h2>
-            <a class="button" th:href="@{/item/list}">商品一覧へ</a>
+            <a class="button" th:href="@{/client/item/list/1}">商品一覧へ</a>
         </div>
     </section>
 </main>

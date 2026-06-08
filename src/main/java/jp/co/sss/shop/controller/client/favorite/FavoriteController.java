@@ -1,4 +1,4 @@
-package jp.co.sss.shop.controller.favorite;
+package jp.co.sss.shop.controller.client.favorite;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
-import jp.co.sss.shop.bean.FavoriteBean;
+import jp.co.sss.shop.bean.ItemBean;
 import jp.co.sss.shop.bean.UserBean;
 import jp.co.sss.shop.entity.Favorite;
 import jp.co.sss.shop.service.BeanTools;
@@ -35,17 +35,17 @@ public class FavoriteController {
 	 * @param model    Viewとの値受渡し   session ログインユーザー
 	 * @return "client/favorite/list" お気に入り一覧
 	 */
-	@GetMapping("/favorite/list")
+	@GetMapping("/client/favorite/list")
 	public String list(Model model,HttpSession session) {
 		//ログイン中の会員IDを取得
 		Integer userId = ((UserBean) session.getAttribute("user")).getId();
 
 		//お気に入り商品情報を取得し、FavoriteBeanへコピー
 		List<Favorite> favorite = favoriteService.findAll(userId);
-		List<FavoriteBean> favoriteBeanList = beanTools.copyrFavoriteBean(favorite);
+		List<ItemBean> itemBeanList = beanTools.copyrFavoriteBean(favorite);
 		
 		//リクエストスコープに保存
-		model.addAttribute("favoriteItems",favoriteBeanList);
+		model.addAttribute("favoriteItems",itemBeanList);
 		return "client/favorite/list";
 	}
 
@@ -54,7 +54,7 @@ public class FavoriteController {
 	 * @param id    商品id   session ログインユーザー
 	 * @return "redirect:/client/item/detail/" +id" 商品詳細画面
 	 */
-	@PostMapping("/favorite/add")
+	@PostMapping("/client/favorite/add")
 	public String add(@RequestParam("id") Integer id,HttpSession session) {
 		//ログイン中の会員IDを取得
 		Integer userId = ((UserBean) session.getAttribute("user")).getId();
@@ -68,12 +68,12 @@ public class FavoriteController {
 	 * @param id    商品id   session ログインユーザー
 	 * @return "redirect:/favorite/listt" お気に入り一覧画面
 	 */
-	@PostMapping("/favorite/delete")
+	@PostMapping("/client/favorite/delete")
 	public String delete(@RequestParam("id") Integer id,HttpSession session) {
 		//お気に入り商品情報を取得
 		Integer userId = ((UserBean) session.getAttribute("user")).getId();
 		//削除フラグを1にする
 		favoriteService.insertFavorite(userId,id);
-		return "redirect:/favorite/list";
+		return "redirect:/client/favorite/list";
 	}
 }
