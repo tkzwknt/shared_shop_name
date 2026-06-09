@@ -82,7 +82,7 @@ public class FavoriteController {
 	/**
 	 * お気に入り 削除処理
 	 * @param id    商品id   session ログインユーザー
-	 * @return "redirect:/favorite/listt" お気に入り一覧画面
+	 * @return "redirect:/favorite/list" お気に入り一覧画面
 	 */
 	@RequestMapping(path = "/client/favorite/delete" , method = RequestMethod.POST)
 	public String delete(@RequestParam("id") Integer id,HttpSession session) {
