@@ -33,7 +33,7 @@
 			</dl>
 		</div>
 		<div class="detail_button_area">
-			<form th:if = "${session.user == null or session.user != null and session.user.authority == 2}"th:action="@{/client/favorite/add}" method="post">
+			<form th:if = "${session.user == null or session.user != null and session.user.authority == 2}"th:action="@{/client/detail/favorite/add}" method="post">
             	<input type="hidden" name="id" th:field="*{id}"/>
             	<button class="button button--heart" type="submit">♥ お気に入りに追加</button>
     		</form>
