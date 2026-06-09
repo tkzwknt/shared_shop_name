@@ -38,7 +38,7 @@
                 <!--ボタン  詳細を見る・削除-->
                 <div class="product-card__actions">
                     <form th:action="@{/client/item/detail/{id}(id=${favorite.id})}" method="post">
-                        <input type="hidden" name="id" th:value="${favorite.id}">
+                        
                         <button class="button button--ghost" type="submit">詳細を見る</button>
                     </form>
                     <form th:action="@{/client/favorite/delete}" method="post">

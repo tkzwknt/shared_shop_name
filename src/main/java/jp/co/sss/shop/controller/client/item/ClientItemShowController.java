@@ -6,9 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -81,7 +79,7 @@ public class ClientItemShowController {
 	 * @param  id   商品ID   model   Viewとの値受渡し  session ログインユーザー
 	 * @return ""client/item/detail" 商品の詳細画面
 	 */
-	@GetMapping("/client/item/detail/{id}")
+	@RequestMapping(path = "/client/item/detail/{id}" , method = { RequestMethod.GET, RequestMethod.POST })
 	public String detailget(@PathVariable Integer id,Model model,HttpSession session) {
 		//主キーがidの商品のレコードを取得
 		Item item = itemRepository.findById(id).orElse(null);
@@ -98,26 +96,4 @@ public class ClientItemShowController {
 		return "client/item/detail";
 	}
 	
-	/**
-	 * 商品詳細画面Post 表示処理
-	 *
-	 * @param  id   商品ID   model   Viewとの値受渡し  session ログインユーザー
-	 * @return ""client/item/detail" 商品の詳細画面
-	 */
-	@PostMapping("/client/item/detail/{id}")
-	public String detailpost(@PathVariable Integer id,Model model,HttpSession session) {
-		//主キーがidの商品のレコードを取得
-		Item item = itemRepository.findById(id).orElse(null);
-		
-		//Itemの格納するList
-		List<Item>entityList = new ArrayList<>();
-		entityList.add(item);
-		
-		//beanToolsサービスに渡し、ItemBean型のList beanListに戻る
-		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
-		//リクエストスコープにbeanListを保存
-		model.addAttribute("item",beanList.get(0));
-		
-		return "client/item/detail";
-	}
 }
