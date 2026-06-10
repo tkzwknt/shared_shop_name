@@ -1,0 +1,589 @@
+		/* Header bottom spacing */
+		body.user > header {
+			margin-bottom: 0 !important;
+		}
+
+		.kc_ref_header {
+			margin-bottom: 0 !important;
+			overflow: visible !important;
+			padding-bottom: 0 !important;
+		}
+
+		/* KURADANI reference header - fixed layout version.
+		   Unique class names are used to avoid old header CSS collisions. */
+		body.user > header {
+			display: block !important;
+			width: 100% !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			background: #fbf6ee !important;
+			border: 0 !important;
+			box-shadow: none !important;
+			position: relative !important;
+			z-index: 100 !important;
+		}
+
+		body.user:has(.kc_ref_header) > .navi_area {
+			display: none !important;
+		}
+
+		.kc_ref_header,
+		.kc_ref_header *,
+		.kc_ref_header *::before,
+		.kc_ref_header *::after {
+			box-sizing: border-box !important;
+		}
+
+		.kc_ref_header {
+			width: 100% !important;
+			max-width: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			background:
+				radial-gradient(circle at 18% 20%, rgba(198, 162, 113, 0.12), transparent 34rem),
+				#fbf6ee !important;
+			color: #2b1a12 !important;
+			font-family: Georgia, "Times New Roman", serif !important;
+			overflow: visible !important;
+			padding-bottom: 0 !important;
+		}
+
+		.kc_ref_header_topline {
+			height: 42px !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			background: linear-gradient(180deg, #2d160c 0%, #211007 100%) !important;
+			color: #c79b5d !important;
+			font-size: 0.68rem !important;
+			font-weight: 700 !important;
+			letter-spacing: 0.28em !important;
+			text-transform: uppercase !important;
+			white-space: nowrap !important;
+		}
+
+		.kc_ref_header_topline_inner {
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			gap: 18px !important;
+		}
+
+		.kc_ref_header_topline_inner::before,
+		.kc_ref_header_topline_inner::after {
+			content: "" !important;
+			width: 112px !important;
+			height: 1px !important;
+			background: linear-gradient(90deg, transparent, rgba(199, 155, 93, 0.86), transparent) !important;
+		}
+
+		.kc_ref_header_topline_text::before,
+		.kc_ref_header_topline_text::after {
+			content: "●" !important;
+			margin: 0 16px !important;
+			font-size: 0.52rem !important;
+			vertical-align: 0.12em !important;
+			color: #c79b5d !important;
+		}
+
+		.kc_ref_header_main {
+			min-height: 172px !important;
+			width: 100% !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+			gap: clamp(18px, 1.8vw, 32px) !important;
+			padding: 36px clamp(28px, 2.8vw, 48px) 34px !important;
+			margin: 0 !important;
+			background: #fbf6ee !important;
+		}
+
+		.kc_ref_brand {
+			flex: 0 1 clamp(330px, 27vw, 440px) !important;
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: flex-start !important;
+			min-width: 0 !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			color: #2b1a12 !important;
+			text-decoration: none !important;
+			white-space: nowrap !important;
+			position: relative !important;
+			transition: transform 0.28s ease, filter 0.28s ease !important;
+		}
+
+		.kc_ref_brand_name {
+			display: block !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			color: #2b1a12 !important;
+			font-family: Georgia, "Times New Roman", serif !important;
+			font-size: clamp(1.95rem, 2.45vw, 2.55rem) !important;
+			font-weight: 500 !important;
+			line-height: 1 !important;
+			letter-spacing: 0.09em !important;
+			transition: color 0.28s ease, letter-spacing 0.28s ease, transform 0.28s ease !important;
+		}
+
+		.kc_ref_brand_tagline {
+			display: block !important;
+			margin: 10px 0 0 30px !important;
+			padding: 0 !important;
+			color: #8b684d !important;
+			font-family: Georgia, "Times New Roman", serif !important;
+			font-size: clamp(0.86rem, 1.05vw, 1.08rem) !important;
+			font-weight: 400 !important;
+			line-height: 1 !important;
+			letter-spacing: 0.18em !important;
+			transition: color 0.28s ease, letter-spacing 0.28s ease, transform 0.28s ease !important;
+		}
+		/* Brand hover motion START */
+		.kc_ref_brand::after {
+			content: "" !important;
+			position: absolute !important;
+			left: 0 !important;
+			bottom: -14px !important;
+			width: 0 !important;
+			height: 1px !important;
+			background: linear-gradient(90deg, rgba(52, 25, 13, 0), rgba(183, 137, 78, 0.9), rgba(52, 25, 13, 0)) !important;
+			transition: width 0.32s ease !important;
+		}
+
+		.kc_ref_brand:hover {
+			transform: translateY(-3px) !important;
+			filter: drop-shadow(0 10px 18px rgba(43, 25, 17, 0.08)) !important;
+		}
+
+		.kc_ref_brand:hover::after {
+			width: 78% !important;
+		}
+
+		.kc_ref_brand:hover .kc_ref_brand_name {
+			color: #3a2114 !important;
+			letter-spacing: 0.115em !important;
+		}
+
+		.kc_ref_brand:hover .kc_ref_brand_tagline {
+			color: #a26f43 !important;
+			transform: translateX(6px) !important;
+		}
+		/* Brand hover motion END */
+
+
+		.kc_ref_nav {
+			flex: 1 1 auto !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			gap: clamp(24px, 2vw, 36px) !important;
+			width: auto !important;
+			min-width: 0 !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			list-style: none !important;
+			white-space: nowrap !important;
+		}
+
+		.kc_ref_nav a {
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			width: auto !important;
+			min-width: 0 !important;
+			height: auto !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			border: 0 !important;
+			border-radius: 0 !important;
+			background: transparent !important;
+			box-shadow: none !important;
+			color: #2b1a12 !important;
+			font-family: Georgia, "Times New Roman", serif !important;
+			font-size: clamp(1.06rem, 1.16vw, 1.24rem) !important;
+			font-weight: 500 !important;
+			line-height: 1 !important;
+			letter-spacing: 0 !important;
+			text-decoration: none !important;
+			text-shadow: none !important;
+			white-space: nowrap !important;
+			position: relative !important;
+			overflow: visible !important;
+			transition: color 0.24s ease, transform 0.24s ease, letter-spacing 0.24s ease !important;
+		}
+
+
+		.kc_ref_actions {
+			flex: 0 0 auto !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: flex-end !important;
+			gap: clamp(12px, 0.95vw, 18px) !important;
+			min-width: 0 !important;
+			margin: 0 !important;
+			padding: 0 0 0 clamp(16px, 1.2vw, 24px) !important;
+			border-left: 1px solid rgba(205, 181, 154, 0.74) !important;
+			white-space: nowrap !important;
+		}
+
+		.kc_ref_icon {
+			position: relative !important;
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			width: 28px !important;
+			height: 28px !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			color: #2b1a12 !important;
+			text-decoration: none !important;
+			flex: 0 0 auto !important;
+			border-radius: 50% !important;
+			overflow: visible !important;
+			transition: color 0.24s ease, transform 0.26s ease, filter 0.26s ease !important;
+		}
+
+		.kc_ref_icon svg {
+			display: block !important;
+			width: 26px !important;
+			height: 26px !important;
+			stroke: currentColor !important;
+			stroke-width: 1.65 !important;
+			fill: none !important;
+			stroke-linecap: round !important;
+			stroke-linejoin: round !important;
+			transition: transform 0.28s ease, stroke-width 0.24s ease !important;
+		}
+		/* Navigation and icon hover motion START */
+		.kc_ref_nav a::before {
+			content: "" !important;
+			position: absolute !important;
+			left: 50% !important;
+			bottom: -12px !important;
+			width: 6px !important;
+			height: 6px !important;
+			border-radius: 50% !important;
+			background: #b7894e !important;
+			opacity: 0 !important;
+			transform: translateX(-50%) scale(0.45) !important;
+			transition: opacity 0.24s ease, transform 0.24s ease !important;
+		}
+
+		.kc_ref_nav a::after {
+			content: "" !important;
+			position: absolute !important;
+			left: 50% !important;
+			bottom: -9px !important;
+			width: 0 !important;
+			height: 1px !important;
+			background: linear-gradient(90deg, rgba(183, 137, 78, 0), rgba(183, 137, 78, 0.92), rgba(183, 137, 78, 0)) !important;
+			transform: translateX(-50%) !important;
+			transition: width 0.28s ease !important;
+		}
+
+		.kc_ref_nav a:hover {
+			color: #8d5d35 !important;
+			transform: translateY(-3px) !important;
+			letter-spacing: 0.035em !important;
+		}
+
+		.kc_ref_nav a:hover::before {
+			opacity: 1 !important;
+			transform: translateX(-50%) scale(1) !important;
+		}
+
+		.kc_ref_nav a:hover::after {
+			width: 72% !important;
+		}
+
+		.kc_ref_icon::before {
+			content: "" !important;
+			position: absolute !important;
+			inset: -9px !important;
+			border-radius: 50% !important;
+			border: 1px solid rgba(183, 137, 78, 0.46) !important;
+			opacity: 0 !important;
+			transform: scale(0.62) rotate(-10deg) !important;
+			transition: opacity 0.26s ease, transform 0.3s ease !important;
+			pointer-events: none !important;
+		}
+
+		.kc_ref_icon::after {
+			content: "" !important;
+			position: absolute !important;
+			left: 50% !important;
+			top: 50% !important;
+			width: 5px !important;
+			height: 5px !important;
+			border-radius: 50% !important;
+			background: rgba(183, 137, 78, 0.9) !important;
+			opacity: 0 !important;
+			transform: translate(-50%, -50%) scale(0.2) !important;
+			transition: opacity 0.2s ease, transform 0.32s ease !important;
+			pointer-events: none !important;
+		}
+
+		.kc_ref_icon:hover {
+			color: #8d5d35 !important;
+			transform: translateY(-4px) scale(1.06) !important;
+			filter: drop-shadow(0 10px 14px rgba(43, 25, 17, 0.12)) !important;
+		}
+
+		.kc_ref_icon:hover::before {
+			opacity: 1 !important;
+			transform: scale(1) rotate(0deg) !important;
+		}
+
+		.kc_ref_icon:hover::after {
+			opacity: 1 !important;
+			transform: translate(-50%, -50%) scale(1) !important;
+		}
+
+		.kc_ref_icon:hover svg {
+			transform: rotate(-4deg) !important;
+			stroke-width: 1.9 !important;
+		}
+
+		.kc_ref_icon:nth-of-type(2):hover svg {
+			transform: rotate(8deg) scale(1.04) !important;
+		}
+
+		.kc_ref_icon:nth-of-type(3):hover svg {
+			transform: translateX(2px) rotate(-6deg) !important;
+		}
+		/* Navigation and icon hover motion END */
+
+
+		.kc_ref_cart_dot {
+			position: absolute !important;
+			top: 1px !important;
+			right: -1px !important;
+			width: 9px !important;
+			height: 9px !important;
+			border-radius: 50% !important;
+			background: #b7894e !important;
+		}
+
+		.kc_ref_order {
+			flex: 0 0 auto !important;
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			min-width: 148px !important;
+			min-height: 52px !important;
+			margin: 0 !important;
+			padding: 0 20px !important;
+			border: 4px double #7d5537 !important;
+			background: #34190d !important;
+			color: #f3d49c !important;
+			font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif !important;
+			font-size: 0.92rem !important;
+			font-weight: 500 !important;
+			letter-spacing: 0.1em !important;
+			line-height: 1 !important;
+			text-decoration: none !important;
+			box-shadow: 0 16px 32px rgba(43, 25, 17, 0.16) !important;
+			white-space: nowrap !important;
+		}
+		.kc_ref_member {
+			position: relative !important;
+			flex: 0 0 auto !important;
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: flex-start !important;
+			justify-content: center !important;
+			min-width: 128px !important;
+			max-width: 206px !important;
+			min-height: 54px !important;
+			margin: 0 !important;
+			padding: 9px 2px 10px !important;
+			border: 0 !important;
+			border-radius: 0 !important;
+			background: transparent !important;
+			color: #2b1a12 !important;
+			font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif !important;
+			text-decoration: none !important;
+			box-shadow: none !important;
+			white-space: nowrap !important;
+		}
+
+		.kc_ref_member::before {
+			content: "" !important;
+			position: absolute !important;
+			left: 0 !important;
+			right: 0 !important;
+			bottom: 0 !important;
+			height: 1px !important;
+			background: linear-gradient(90deg, rgba(52, 25, 13, 0.18), rgba(183, 137, 78, 0.9), rgba(52, 25, 13, 0.18)) !important;
+		}
+
+		.kc_ref_member::after {
+			content: "" !important;
+			position: absolute !important;
+			left: 0 !important;
+			bottom: -2px !important;
+			width: 0 !important;
+			height: 2px !important;
+			background: #b7894e !important;
+			transition: width 0.22s ease !important;
+		}
+
+		.kc_ref_member:hover::after {
+			width: 100% !important;
+		}
+
+		.kc_ref_member_label {
+			display: block !important;
+			margin: 0 0 7px !important;
+			color: #9a7657 !important;
+			font-family: Georgia, "Times New Roman", serif !important;
+			font-size: 0.54rem !important;
+			font-weight: 700 !important;
+			letter-spacing: 0.22em !important;
+			line-height: 1 !important;
+			text-transform: uppercase !important;
+		}
+
+		.kc_ref_member_name {
+			display: block !important;
+			max-width: 172px !important;
+			overflow: visible !important;
+			text-overflow: ellipsis !important;
+			color: #2b1a12 !important;
+			font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", "Times New Roman", serif !important;
+			font-size: 1.02rem !important;
+			font-weight: 600 !important;
+			letter-spacing: 0.1em !important;
+			line-height: 1.22 !important;
+		}
+
+
+
+		.kc_ref_header_rule {
+			position: relative !important;
+			height: 72px !important;
+			margin: 0 !important;
+			padding: 0 !important;
+			border-top: 1px solid rgba(190, 161, 129, 0.74) !important;
+			border-bottom: 1px solid rgba(190, 161, 129, 0.74) !important;
+			background: #fbf6ee !important;
+			margin-bottom: 0 !important;
+		}
+
+		.kc_ref_header_rule::before,
+		.kc_ref_header_rule::after {
+			content: "" !important;
+			position: absolute !important;
+			top: 50% !important;
+			width: calc(50% - 72px) !important;
+			height: 1px !important;
+			background: rgba(190, 161, 129, 0.66) !important;
+		}
+
+		.kc_ref_header_rule::before {
+			left: 0 !important;
+		}
+
+		.kc_ref_header_rule::after {
+			right: 0 !important;
+		}
+
+		.kc_ref_badge {
+			position: absolute !important;
+			left: 50% !important;
+			top: 50% !important;
+			width: 78px !important;
+			height: 78px !important;
+			transform: translate(-50%, -50%) !important;
+			border-radius: 50% !important;
+			border: 1px solid #b6884f !important;
+			background: #fbf6ee !important;
+			display: grid !important;
+			place-items: center !important;
+			color: #b6884f !important;
+			box-shadow: 0 0 0 6px #fbf6ee !important;
+		}
+
+		.kc_ref_badge svg {
+			width: 38px !important;
+			height: 38px !important;
+			stroke: currentColor !important;
+			stroke-width: 1.35 !important;
+			fill: none !important;
+			stroke-linecap: round !important;
+			stroke-linejoin: round !important;
+		}
+
+		@media (max-width: 1500px) {
+			.kc_ref_header_main {
+				gap: 22px !important;
+				padding-left: 34px !important;
+				padding-right: 34px !important;
+			}
+
+			.kc_ref_brand {
+				flex-basis: 360px !important;
+			}
+
+			.kc_ref_brand_name {
+				font-size: 2.05rem !important;
+				letter-spacing: 0.09em !important;
+			}
+
+			.kc_ref_brand_tagline {
+				font-size: 0.92rem !important;
+				margin-left: 24px !important;
+				letter-spacing: 0.2em !important;
+			}
+
+			.kc_ref_nav {
+				gap: 24px !important;
+				min-width: 300px !important;
+			}
+
+			.kc_ref_nav a {
+				font-size: 1.04rem !important;
+			}
+
+			.kc_ref_actions {
+				gap: 16px !important;
+				padding-left: 22px !important;
+			}
+
+			.kc_ref_order {
+				min-width: 142px !important;
+				padding: 0 20px !important;
+				font-size: 0.9rem !important;
+			}
+		}
+
+		@media (max-width: 900px) {
+			.kc_ref_header_main {
+				flex-wrap: wrap !important;
+				min-height: auto !important;
+				padding: 34px 26px 32px !important;
+				row-gap: 28px !important;
+			}
+
+			.kc_ref_brand {
+				flex: 1 1 100% !important;
+				align-items: center !important;
+				text-align: center !important;
+			}
+
+			.kc_ref_brand_tagline {
+				margin-left: 0 !important;
+			}
+
+			.kc_ref_nav {
+				flex: 1 1 auto !important;
+				min-width: 0 !important;
+				order: 2 !important;
+			}
+
+			.kc_ref_actions {
+				flex: 0 0 auto !important;
+				order: 3 !important;
+				padding-left: 24px !important;
+			}
+		}

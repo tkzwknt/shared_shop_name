@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
+<head>
+	<title>Learn Our Story | KURADANI COFFEE</title>
+	<meta charset="UTF-8" />
+</head>
+<body class="user story">
+	<div class="coffee_story_page">
+		<section class="coffee_story_hero coffee_story_reveal">
+			<div class="coffee_story_hero_copy">
+				<p class="coffee_story_kicker">OUR STORY</p>
+				<h1>Rooted in Nature.<br />Crafted with Purpose.</h1>
+				<p class="coffee_story_lead">
+					自然の恵みを、丁寧な焙煎で一杯へ。<br />
+					私たちは、産地の個性と作り手の想いを尊重し、<br />
+					日々の暮らしに静かに寄り添うコーヒーを届けます。
+				</p>
+				<a href="#story-philosophy" class="coffee_story_button">OUR PHILOSOPHY <span>→</span></a>
+			</div>
+			<div class="coffee_story_hero_visual">
+				<img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="焙煎機でコーヒー豆を確認する様子" />
+			</div>
+		</section>
+
+		<section class="coffee_story_promises coffee_story_reveal" aria-label="Our Promise">
+			<div class="coffee_story_section_label">
+				<span></span>
+				<strong>OUR PROMISE</strong>
+				<span></span>
+			</div>
+			<div class="coffee_story_promise_grid">
+				<article class="coffee_story_promise_item coffee_story_reveal_item">
+					<div class="coffee_story_icon" aria-hidden="true">
+						<svg viewBox="0 0 64 64"><path d="M8 44 24 25l10 11 8-9 14 17H8Z"/><path d="M22 44h20"/></svg>
+					</div>
+					<h2>SOURCED WITH CARE</h2>
+					<p>信頼できる産地から選ぶ</p>
+					<small>世界中の生産者を訪ね、環境や人に配慮した農園から、個性ある豆を丁寧に選びます。</small>
+				</article>
+				<article class="coffee_story_promise_item coffee_story_reveal_item">
+					<div class="coffee_story_icon" aria-hidden="true">
+						<svg viewBox="0 0 64 64"><path d="M32 8c8 10 14 18 14 28a14 14 0 0 1-28 0c0-7 5-12 9-17 1 8 5 11 5 11s5-8 0-22Z"/><path d="M24 42c2 5 6 8 8 8s6-3 8-8"/></svg>
+					</div>
+					<h2>ROASTED WITH INTENTION</h2>
+					<p>豆の個性に合わせて焙煎する</p>
+					<small>少量ずつ、豆の特徴を見極めながら焙煎。心地よい余韻と透明感を大切にします。</small>
+				</article>
+				<article class="coffee_story_promise_item coffee_story_reveal_item">
+					<div class="coffee_story_icon" aria-hidden="true">
+						<svg viewBox="0 0 64 64"><path d="M10 22h30v24H10z"/><path d="M40 30h8l6 8v8H40z"/><circle cx="22" cy="49" r="4"/><circle cx="48" cy="49" r="4"/></svg>
+					</div>
+					<h2>DELIVERED FRESH</h2>
+					<p>香りが残るうちに届ける</p>
+					<small>焙煎したての豆を、最適な状態でお届け。新鮮な香りと味わいをお楽しみください。</small>
+				</article>
+			</div>
+		</section>
+
+		<section id="story-philosophy" class="coffee_story_philosophy coffee_story_reveal">
+			<div class="coffee_story_philosophy_copy coffee_story_reveal_item">
+				<p class="coffee_story_kicker">OUR PHILOSOPHY</p>
+				<h2>一杯の背景まで、<br />美味しさにする。</h2>
+				<p>
+					コーヒーの味わいは、豆だけで決まるものではありません。<br />
+					産地の気候、土壌、生産者の手仕事、焙煎の火入れ、<br />
+					そして飲む人の時間まで含めて、一杯の体験になります。
+				</p>
+				<p>
+					私たちは、そのすべてに誠実でありたいと考えています。<br />
+					目の前の一杯が、日常の中でふと心を整えてくれるように。<br />
+					そんなコーヒーを、これからも丁寧に届けていきます。
+				</p>
+			</div>
+			<div class="coffee_story_philosophy_visual coffee_story_reveal_item">
+				<img src="https://images.unsplash.com/photo-1518057111178-44a106bad636?auto=format&amp;fit=crop&amp;w=1500&amp;q=80" alt="木のテーブルに置かれたコーヒーカップとノート" />
+			</div>
+		</section>
+
+		<section class="coffee_story_nature_banner coffee_story_reveal">
+			<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=1800&amp;q=80" alt="霧がかかった山と森の風景" />
+			<div>
+				<h2>From Nature to Your Cup</h2>
+				<p>自然から、あなたの一杯まで</p>
+			</div>
+		</section>
+
+		<section class="coffee_story_next coffee_story_reveal" aria-label="Next Journey">
+			<div class="coffee_story_next_heading">
+				<p>NEXT JOURNEY</p>
+				<h2>次に知る</h2>
+			</div>
+			<div class="coffee_story_next_grid">
+				<a th:href="@{/client/origin}" class="coffee_story_next_card coffee_story_reveal_item">
+					<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="コーヒー産地の山並み" />
+					<span>OUR ORIGIN</span>
+					<strong>産地について知る</strong>
+					<b>→</b>
+				</a>
+				<a th:href="@{/client/recipe}" class="coffee_story_next_card coffee_story_reveal_item">
+					<img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="焙煎されたコーヒー豆" />
+					<span>BREW RECIPE</span>
+					<strong>淹れ方について知る</strong>
+					<b>→</b>
+				</a>
+				<a th:href="@{/client/item/list/1}" class="coffee_story_next_card coffee_story_reveal_item">
+					<img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="コーヒー豆とパッケージ" />
+					<span>COFFEE</span>
+					<strong>商品を見る</strong>
+					<b>→</b>
+				</a>
+			</div>
+		</section>
+
+		<section class="coffee_story_newsletter coffee_story_reveal">
+			<div class="coffee_story_mail_icon" aria-hidden="true">
+				<svg viewBox="0 0 64 64"><path d="M10 18h44v30H10z"/><path d="m10 20 22 17 22-17"/></svg>
+			</div>
+			<div>
+				<h2>STAY CONNECTED</h2>
+				<p>新豆の入荷情報や、コーヒーの楽しみ方をお届けします。</p>
+			</div>
+			<form class="coffee_story_mail_form">
+				<label for="story-mail">メールアドレスを入力</label>
+				<input id="story-mail" type="email" aria-label="メールアドレス" />
+				<button type="button">登録する</button>
+			</form>
+		</section>
+	</div>
+</body>
+</html>
