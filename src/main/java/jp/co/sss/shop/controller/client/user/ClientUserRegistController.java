@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import jp.co.sss.shop.bean.UserBean;
 import jp.co.sss.shop.entity.User;
 import jp.co.sss.shop.form.UserForm;
 import jp.co.sss.shop.repository.UserRepository;
@@ -137,7 +138,10 @@ public class ClientUserRegistController {
 		user = userRepository.save(user);
 //		userRepository.save(user);
 		//userの内容をセッションスコープに保存し、userFormの内容を破棄
-		session.setAttribute("user", user);
+		UserBean userBean = new UserBean();
+		BeanUtils.copyProperties(user, userBean);
+		
+		session.setAttribute("user", userBean);
 		
 		session.removeAttribute("userForm");
 		return "redirect:/client/user/regist/complete";
