@@ -33,6 +33,7 @@ public class ClientItemShowController {
 	ItemRepository itemRepository;
 	@Autowired
 	OrderItemRepository orderItemRepository;
+
 	/**
 	 * Entity、Form、Bean間のデータコピーサービス
 	 */
@@ -45,55 +46,74 @@ public class ClientItemShowController {
 	 * @param model    Viewとの値受渡し
 	 * @return "index" トップ画面
 	 */
-	@RequestMapping(path = "/" , method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(path = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index(Model model) {
-		
+
 		//注文商品一覧を全件検索
 		List<OrderItem> orderItemEntityList = orderItemRepository.findAll();
 		//Itemの格納するList
 		List<Item> entityList = new ArrayList<>();
-		
+
 		//orderItemEntityListに値が入っているか判定する
-		if(orderItemEntityList != null) {
+		if (orderItemEntityList != null) {
 			//entityListに削除フラグが0で注文商品が多い順に検索
 			entityList = itemRepository.findByDeleteFlagOrderByOrderItemCountDesc(Constant.NOT_DELETED);
 			//リクエストスコープにsortType(売れ筋順)を保存
-			model.addAttribute("sortType",2);
-		}else {
+			model.addAttribute("sortType", 2);
+		} else {
 			//entityListに削除フラグが0で新しく登録した順に検索
 			entityList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(Constant.NOT_DELETED);
 			//リクエストスコープにsortType(新規登録順)を保存
-			model.addAttribute("sortType",Constant.DEFAULT_SORT_TYPE);
+			model.addAttribute("sortType", Constant.DEFAULT_SORT_TYPE);
 		}
-		
+
 		//beanToolsサービスに渡し、ItemBean型のList beanListに戻る
-		List<ItemBean> beanList =beanTools.copyEntityListToItemBeanList(entityList);
+		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
 		//リクエストスコープにbeanListを保存
-		model.addAttribute("items",beanList);
+		model.addAttribute("items", beanList);
 		return "index";
 	}
-	
+
 	/**
 	 * 商品詳細画面Get 表示処理
 	 *
 	 * @param  id   商品ID   model   Viewとの値受渡し  session ログインユーザー
 	 * @return ""client/item/detail" 商品の詳細画面
 	 */
-	@RequestMapping(path = "/client/item/detail/{id}" , method = { RequestMethod.GET, RequestMethod.POST })
-	public String detailget(@PathVariable Integer id,Model model,HttpSession session) {
+	@RequestMapping(path = "/client/item/detail/{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String detailget(@PathVariable Integer id, Model model, HttpSession session) {
 		//主キーがidの商品のレコードを取得
 		Item item = itemRepository.findById(id).orElse(null);
-		
+
 		//Itemの格納するList
-		List<Item>entityList = new ArrayList<>();
+		List<Item> entityList = new ArrayList<>();
 		entityList.add(item);
-		
+
 		//beanToolsサービスに渡し、ItemBean型のList beanListに戻る
 		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
 		//リクエストスコープにbeanListを保存
-		model.addAttribute("item",beanList.get(0));
-		
+		model.addAttribute("item", beanList.get(0));
+
 		return "client/item/detail";
 	}
+
 	
+	
+	/**
+	 * 商品一覧画面 表示処理
+	 *
+	 * @param  id   商品ID   model   Viewとの値受渡し  session ログインユーザー
+	 * @return ""client/item/detail" 商品の詳細画面
+	 */
+	@RequestMapping(path = "/client/item/list/{sortType}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String beansList(@PathVariable Integer sortType, Model model, HttpSession session) {
+		List<Item> itemList = itemRepository.findAll();
+		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
+		
+		model.addAttribute("items", itemBeanList);
+		
+		
+		return "client/item/list";
+	}
+
 }
