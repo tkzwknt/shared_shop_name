@@ -18,7 +18,7 @@ public class ClientBasketController {
 	@Autowired
 	ItemRepository itemRepository;
 	@RequestMapping(path = "/client/basket/add" , method = RequestMethod.POST)
-	public String basketadd(@RequestParam("id") Integer id,  HttpSession session) {
+	public String basketAdd(@RequestParam("id") Integer id,  HttpSession session) {
 		List<BasketBean> basketsList  =(List<BasketBean>)session.getAttribute("basketBeans");
 		List<BasketBean> baskets = new ArrayList<>();
 		boolean isItem = true;
@@ -57,12 +57,12 @@ public class ClientBasketController {
 	}
 	
 	@RequestMapping(path="/client/basket/list" ,method = RequestMethod.GET)
-	public String basketlist(HttpSession session) {
+	public String basketList(HttpSession session) {
 		return"client/basket/list";
 	}
 	
 	@RequestMapping(path="/client/basket/delete", method = RequestMethod.POST)
-	public String basketdelete(@RequestParam("id") Integer id,HttpSession session) {
+	public String basketDelete(@RequestParam("id") Integer id,HttpSession session) {
 		List<BasketBean> basketsList  =(List<BasketBean>)session.getAttribute("basketBeans");
 		List<BasketBean> baskets = new ArrayList<>();
 		for(BasketBean beanItem:basketsList) {
@@ -80,6 +80,13 @@ public class ClientBasketController {
 		}
 		
 		return"redirect:/client/basket/list";
+	}
+	
+	@RequestMapping(path="/client/basket/allDelete", method = RequestMethod.POST)
+	public String basketAllDelete(HttpSession session) {
+		session.setAttribute("basketBeans",null);
+		return"redirect:/client/basket/list";
+
 	}
 
 }
