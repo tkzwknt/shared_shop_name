@@ -8,6 +8,7 @@
 <body>
 	<ul th:fragment="layout-menu" th:class="navi_menu">
 		<li><a th:href="@{/}" th:text="#{top}"></a></li>
+		<li><a th:href="@{/client/story}">Story</a></li>
 		<li><a th:href="@{/client/item/list/1}" th:text="#{item}+#{title.list}"></a></li>
 		<li><a th:href="@{/client/basket/list}" th:text="#{basket}"></a></li>
 		<th:block th:if="${session.user != null}">

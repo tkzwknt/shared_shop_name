@@ -1,0 +1,716 @@
+@charset "UTF-8";
+
+/* =========================================================
+   Learn Our Story page
+   - scoped to .coffee_story_page
+   - existing header/footer/menu styles are untouched
+   ========================================================= */
+
+
+/* =========================================================
+   Existing layout adjustment for Story only
+   - header/footer/menu remain common layout
+   - sidebar is removed by layoutNoSidebar from controller
+   ========================================================= */
+
+.story_page_body {
+	background: #fbf6ee;
+	color: #2b1a12;
+}
+
+.story_page_body > .container.container--no-sidebar {
+	width: 100%;
+	max-width: none;
+	display: block;
+	margin: 0;
+	padding: 0;
+	background: #fbf6ee;
+}
+
+.story_page_body > .container.container--no-sidebar > .main.main--full {
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 0 0 80px;
+	background: #fbf6ee;
+}
+
+.coffee_story_page,
+.coffee_story_page * {
+	box-sizing: border-box;
+}
+
+.coffee_story_page {
+	--story-ink: #2b1a12;
+	--story-brown: #321f14;
+	--story-cream: #fbf6ee;
+	--story-panel: #fffaf4;
+	--story-line: rgba(205, 181, 154, 0.72);
+	--story-muted: #6a574a;
+	width: 100%;
+	max-width: 1520px;
+	margin: 0 auto;
+	padding: 0 clamp(26px, 3.2vw, 46px) 26px;
+	background:
+		radial-gradient(circle at 14% 4%, rgba(198, 162, 113, 0.10), transparent 34rem),
+		linear-gradient(180deg, #fffaf4 0%, #fbf6ee 52%, #f8efe5 100%);
+	color: var(--story-ink);
+	font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.coffee_story_page a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.coffee_story_hero {
+	display: grid;
+	grid-template-columns: minmax(420px, 0.86fr) minmax(0, 1.14fr);
+	min-height: 580px;
+	border-top: 1px solid var(--story-line);
+	border-bottom: 1px solid var(--story-line);
+}
+
+.coffee_story_hero_copy {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: clamp(62px, 7vw, 108px) clamp(34px, 5vw, 74px) clamp(56px, 6vw, 86px) clamp(28px, 3vw, 48px);
+}
+
+.coffee_story_kicker {
+	position: relative;
+	margin: 0 0 30px;
+	padding-bottom: 13px;
+	color: #4b3527;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+}
+
+.coffee_story_kicker::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 42px;
+	height: 1px;
+	background: #b99772;
+}
+
+.coffee_story_hero h1 {
+	margin: 0;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: clamp(3.5rem, 5.4vw, 6.1rem);
+	font-weight: 500;
+	line-height: 1.04;
+	letter-spacing: -0.06em;
+	color: var(--story-ink);
+}
+
+.coffee_story_lead {
+	margin: 34px 0 0;
+	max-width: 590px;
+	color: #4f3d31;
+	font-size: 1rem;
+	line-height: 2.08;
+}
+
+.coffee_story_button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 18px;
+	width: fit-content;
+	min-width: 238px;
+	min-height: 58px;
+	margin-top: 40px;
+	padding: 0 34px;
+	background: linear-gradient(135deg, #452615, #24130d);
+	color: #fffaf4;
+	font-size: 0.84rem;
+	font-weight: 800;
+	letter-spacing: 0.14em;
+	box-shadow: 0 18px 34px rgba(43, 25, 17, 0.16);
+	transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.coffee_story_button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 24px 44px rgba(43, 25, 17, 0.22);
+}
+
+.coffee_story_hero_visual {
+	min-height: 560px;
+	overflow: hidden;
+	background: #2b1a12;
+}
+
+.coffee_story_hero_visual img,
+.coffee_story_philosophy_visual img,
+.coffee_story_nature_banner img,
+.coffee_story_next_card img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.coffee_story_hero_visual img {
+	filter: sepia(0.1) saturate(0.88) brightness(0.82) contrast(1.04);
+}
+
+.coffee_story_promises {
+	padding: 0 0 70px;
+}
+
+.coffee_story_section_label {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	align-items: center;
+	gap: 22px;
+	margin: 0 0 36px;
+	padding-top: 30px;
+}
+
+.coffee_story_section_label span {
+	height: 1px;
+	background: var(--story-line);
+}
+
+.coffee_story_section_label strong {
+	color: #4b3527;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+}
+
+.coffee_story_promise_grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0;
+}
+
+.coffee_story_promise_item {
+	padding: 28px clamp(28px, 3vw, 56px) 8px;
+	text-align: center;
+	border-right: 1px solid var(--story-line);
+}
+
+.coffee_story_promise_item:last-child {
+	border-right: 0;
+}
+
+.coffee_story_icon {
+	width: 70px;
+	height: 70px;
+	margin: 0 auto 22px;
+	color: #3d281d;
+}
+
+.coffee_story_icon svg,
+.coffee_story_mail_icon svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.coffee_story_promise_item h2 {
+	margin: 0;
+	color: var(--story-ink);
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 1.08rem;
+	font-weight: 500;
+	letter-spacing: 0.08em;
+}
+
+.coffee_story_promise_item p {
+	margin: 11px 0 0;
+	color: #4f3d31;
+	font-size: 0.94rem;
+	font-weight: 700;
+}
+
+.coffee_story_promise_item small {
+	display: block;
+	max-width: 340px;
+	margin: 22px auto 0;
+	color: var(--story-muted);
+	font-size: 0.86rem;
+	line-height: 1.95;
+}
+
+.coffee_story_philosophy {
+	display: grid;
+	grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1.18fr);
+	gap: clamp(42px, 5vw, 78px);
+	align-items: stretch;
+	padding: 28px clamp(28px, 4vw, 70px) 66px;
+}
+
+.coffee_story_philosophy_copy {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.coffee_story_philosophy_copy h2 {
+	margin: 0;
+	color: var(--story-ink);
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: clamp(2.15rem, 3.2vw, 4rem);
+	font-weight: 500;
+	line-height: 1.28;
+	letter-spacing: 0.02em;
+}
+
+.coffee_story_philosophy_copy > p:not(.coffee_story_kicker) {
+	margin: 26px 0 0;
+	color: #57463b;
+	font-size: 0.95rem;
+	line-height: 2.05;
+}
+
+.coffee_story_philosophy_visual {
+	height: auto;
+	align-self: stretch;
+	overflow: hidden;
+	background: #e9ded1;
+}
+
+.coffee_story_philosophy_visual img {
+	object-position: center bottom;
+	filter: sepia(0.08) saturate(0.84) brightness(0.96);
+}
+
+.coffee_story_nature_banner {
+	position: relative;
+	height: 190px;
+	overflow: hidden;
+	background: #271710;
+}
+
+.coffee_story_nature_banner img {
+	filter: sepia(0.15) saturate(0.8) brightness(0.58) contrast(1.04);
+}
+
+.coffee_story_nature_banner::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(25, 14, 8, 0.56), rgba(25, 14, 8, 0.12), rgba(25, 14, 8, 0.56));
+}
+
+.coffee_story_nature_banner div {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #fff7ea;
+	text-align: center;
+}
+
+.coffee_story_nature_banner h2 {
+	margin: 0;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: clamp(2rem, 3vw, 3.3rem);
+	font-weight: 500;
+}
+
+.coffee_story_nature_banner p {
+	margin: 10px 0 0;
+	font-size: 1rem;
+	letter-spacing: 0.08em;
+}
+
+.coffee_story_next {
+	padding: 34px 0 36px;
+}
+
+.coffee_story_next_heading {
+	text-align: center;
+	margin-bottom: 26px;
+}
+
+.coffee_story_next_heading p {
+	margin: 0 0 8px;
+	color: #604330;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 0.82rem;
+	letter-spacing: 0.18em;
+}
+
+.coffee_story_next_heading h2 {
+	margin: 0;
+	color: #4f3d31;
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.coffee_story_next_grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 18px;
+}
+
+.coffee_story_next_card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	min-height: 260px;
+	padding: 26px 28px;
+	overflow: hidden;
+	color: #fffaf4;
+	background: #2b1a12;
+}
+
+.coffee_story_next_card img {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	filter: sepia(0.12) saturate(0.86) brightness(0.56) contrast(1.05);
+	transition: transform 0.28s ease;
+}
+
+.coffee_story_next_card::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(180deg, rgba(18, 9, 5, 0.06), rgba(18, 9, 5, 0.72));
+}
+
+.coffee_story_next_card span,
+.coffee_story_next_card strong,
+.coffee_story_next_card b {
+	position: relative;
+	z-index: 2;
+}
+
+.coffee_story_next_card span {
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 0.86rem;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+}
+
+.coffee_story_next_card strong {
+	margin-top: 10px;
+	font-size: 1rem;
+}
+
+.coffee_story_next_card b {
+	position: absolute;
+	left: 28px;
+	bottom: 26px;
+	display: grid;
+	place-items: center;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 250, 244, 0.76);
+	font-weight: 400;
+}
+
+.coffee_story_next_card:hover img {
+	transform: scale(1.05);
+}
+
+.coffee_story_newsletter {
+	display: grid;
+	grid-template-columns: 76px minmax(260px, 1fr) minmax(360px, 1.2fr);
+	gap: 28px;
+	align-items: center;
+	padding: 30px 42px;
+	border: 1px solid var(--story-line);
+	background: rgba(255, 250, 244, 0.58);
+}
+
+.coffee_story_mail_icon {
+	width: 54px;
+	height: 54px;
+	color: #3d281d;
+}
+
+.coffee_story_newsletter h2 {
+	margin: 0 0 8px;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 0.9rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+}
+
+.coffee_story_newsletter p {
+	margin: 0;
+	color: var(--story-muted);
+	font-size: 0.9rem;
+	line-height: 1.7;
+}
+
+.coffee_story_mail_form {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 16px;
+	align-items: end;
+}
+
+.coffee_story_mail_form label {
+	grid-column: 1 / 2;
+	color: #6a574a;
+	font-size: 0.78rem;
+}
+
+.coffee_story_mail_form input {
+	grid-column: 1 / 2;
+	width: 100%;
+	height: 42px;
+	border: 0;
+	border-bottom: 1px solid rgba(74, 49, 34, 0.42);
+	background: transparent;
+	outline: none;
+}
+
+.coffee_story_mail_form button {
+	grid-column: 2 / 3;
+	grid-row: 1 / 3;
+	min-width: 128px;
+	height: 46px;
+	border: 0;
+	background: #321f14;
+	color: #fffaf4;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.coffee_story_reveal,
+.coffee_story_reveal_item {
+	animation: coffeeStoryFade 0.7s ease both;
+}
+
+.coffee_story_reveal_item:nth-child(2) {
+	animation-delay: 0.08s;
+}
+
+.coffee_story_reveal_item:nth-child(3) {
+	animation-delay: 0.16s;
+}
+
+@keyframes coffeeStoryFade {
+	from {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 1180px) {
+	.coffee_story_hero,
+	.coffee_story_philosophy,
+	.coffee_story_newsletter {
+		grid-template-columns: 1fr;
+	}
+
+	.coffee_story_hero_visual {
+		min-height: 440px;
+	}
+
+	.coffee_story_promise_grid,
+	.coffee_story_next_grid {
+		grid-template-columns: 1fr;
+	}
+
+	.coffee_story_promise_item {
+		border-right: 0;
+		border-bottom: 1px solid var(--story-line);
+	}
+
+	.coffee_story_promise_item:last-child {
+		border-bottom: 0;
+	}
+
+	.coffee_story_newsletter {
+		gap: 18px;
+	}
+}
+
+@media (max-width: 720px) {
+	.coffee_story_page {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
+
+	.coffee_story_hero_copy,
+	.coffee_story_philosophy {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.coffee_story_hero h1 {
+		font-size: 2.75rem;
+	}
+
+	.coffee_story_hero_visual,
+	.coffee_story_philosophy_visual {
+		min-height: 320px;
+		height: 320px;
+	}
+
+	.coffee_story_newsletter {
+		padding: 24px 20px;
+	}
+
+	.coffee_story_mail_form {
+		grid-template-columns: 1fr;
+	}
+
+	.coffee_story_mail_form label,
+	.coffee_story_mail_form input,
+	.coffee_story_mail_form button {
+		grid-column: 1 / 2;
+		grid-row: auto;
+	}
+}
+
+/* =========================================================
+   Story page readability fixes
+   - keep layout untouched
+   - improve contrast for dark CTA and image cards
+   ========================================================= */
+
+.coffee_story_page a.coffee_story_button,
+.coffee_story_page a.coffee_story_button:link,
+.coffee_story_page a.coffee_story_button:visited,
+.coffee_story_page a.coffee_story_button:hover,
+.coffee_story_page a.coffee_story_button:active,
+.coffee_story_page a.coffee_story_button span {
+	color: #fffaf4;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+}
+
+.coffee_story_page a.coffee_story_button {
+	background: linear-gradient(135deg, #4b2816 0%, #2a130b 100%);
+	box-shadow: 0 18px 34px rgba(43, 25, 17, 0.22);
+}
+
+.coffee_story_page a.coffee_story_next_card,
+.coffee_story_page a.coffee_story_next_card:link,
+.coffee_story_page a.coffee_story_next_card:visited,
+.coffee_story_page a.coffee_story_next_card:hover,
+.coffee_story_page a.coffee_story_next_card:active {
+	color: #fffaf4;
+}
+
+.coffee_story_next_card {
+	padding-bottom: 74px;
+}
+
+.coffee_story_next_card img {
+	filter: sepia(0.06) saturate(1.22) brightness(0.90) contrast(1.08);
+}
+
+.coffee_story_next_card::after {
+	background:
+		linear-gradient(90deg, rgba(16, 8, 4, 0.58) 0%, rgba(16, 8, 4, 0.34) 40%, rgba(16, 8, 4, 0.08) 100%),
+		linear-gradient(180deg, rgba(16, 8, 4, 0.04) 0%, rgba(16, 8, 4, 0.46) 100%);
+}
+
+.coffee_story_next_card span,
+.coffee_story_next_card strong,
+.coffee_story_next_card b {
+	color: #fffaf4;
+	text-shadow: 0 2px 8px rgba(0, 0, 0, 0.56);
+}
+
+.coffee_story_next_card span {
+	color: #f1d5b5;
+}
+
+.coffee_story_next_card strong {
+	font-weight: 700;
+}
+
+.coffee_story_next_card b {
+	background: rgba(255, 250, 244, 0.08);
+	border-color: rgba(255, 250, 244, 0.88);
+}
+
+/* =========================================================
+   Story page philosophy layout refinement
+   - image left / text right
+   - slightly lower vertical height
+   ========================================================= */
+
+.coffee_story_philosophy {
+	grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+	align-items: center;
+	padding-top: 18px;
+	padding-bottom: 48px;
+}
+
+.coffee_story_philosophy_visual {
+	order: 1;
+	height: clamp(300px, 28vw, 380px);
+	align-self: center;
+}
+
+.coffee_story_philosophy_copy {
+	order: 2;
+	justify-content: center;
+}
+
+.coffee_story_philosophy_visual img {
+	object-position: center bottom;
+}
+
+@media (max-width: 1180px) {
+	.coffee_story_philosophy {
+		grid-template-columns: 1fr;
+	}
+
+	.coffee_story_philosophy_visual,
+	.coffee_story_philosophy_copy {
+		order: initial;
+	}
+}
+
+@media (max-width: 720px) {
+	.coffee_story_philosophy_visual {
+		height: 300px;
+		min-height: 300px;
+	}
+}
+
+/* =========================================================
+   Story page philosophy image crop fix
+   - keep image left / text right
+   - avoid cutting off the cup at the top
+   ========================================================= */
+
+.coffee_story_philosophy_visual {
+	height: clamp(330px, 31vw, 410px);
+}
+
+.coffee_story_philosophy_visual img {
+	object-position: center center;
+}
+
+@media (max-width: 720px) {
+	.coffee_story_philosophy_visual {
+		height: 330px;
+		min-height: 330px;
+	}
+}

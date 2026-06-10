@@ -144,10 +144,12 @@ header {
 	width: 960px;
 	padding:12px 0;
 	margin: 0 auto;
+	display: flex;
 }
 .navi_menu li {
-	display: inline-block;
-	width: 24%;
+	display: block;
+	width: auto;
+	flex: 1;
 }
 .navi_menu a {
 	display: inline-block;
@@ -376,4 +378,12 @@ small {
 	line-height:30px;
 	text-shadow: 1px 1px 1px #fff;
 	font-size: 8pt;
+}
+
+/* ---- サイドバーなしページ用 ---- */
+.container.container--no-sidebar {
+	display: block;
+}
+.container.container--no-sidebar .main.main--full {
+	width: 100%;
 }

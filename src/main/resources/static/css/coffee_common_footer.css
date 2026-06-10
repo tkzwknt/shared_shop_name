@@ -1,0 +1,615 @@
+@charset "UTF-8";
+
+/* =========================================================
+   Common coffee footer
+   - loaded only from layout_5block.html
+   - admin layouts keep the original small footer
+   ========================================================= */
+
+body.user {
+	margin-bottom: 0;
+}
+
+body.user > footer {
+	position: relative;
+	bottom: auto;
+	width: 100%;
+	background: transparent;
+	text-align: left;
+	z-index: 1;
+}
+
+body.user:has(.coffee_reference_top) {
+	--coffee-footer-side-offset: 304px;
+}
+
+body.user:has(.coffee_concept_page) {
+	--coffee-footer-side-offset: var(--concept-sidebar-width-fixed, 360px);
+}
+
+body.user:has(.coffee_reference_top) > footer,
+body.user:has(.coffee_concept_page) > footer {
+	width: calc(100% - var(--coffee-footer-side-offset));
+	margin-right: var(--coffee-footer-side-offset);
+}
+
+.coffee_common_footer {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	padding: 40px clamp(24px, 4vw, 58px) 22px;
+	background:
+		radial-gradient(circle at 12% 4%, rgba(194, 144, 88, 0.22), transparent 26rem),
+		radial-gradient(circle at 88% 28%, rgba(255, 247, 234, 0.052), transparent 22rem),
+		linear-gradient(135deg, #24160f 0%, #160f0a 52%, #0f0a07 100%);
+	color: #fff7ea;
+	font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+.coffee_common_footer::before {
+	content: "";
+	position: absolute;
+	top: 24px;
+	left: clamp(24px, 4vw, 58px);
+	right: clamp(24px, 4vw, 58px);
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(194, 144, 88, 0.72), rgba(255, 247, 234, 0.14), rgba(194, 144, 88, 0.72), transparent);
+	z-index: -1;
+}
+
+.coffee_common_footer::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 48px;
+	height: 126px;
+	background:
+		linear-gradient(135deg, transparent 0 39%, rgba(255, 247, 234, 0.09) 39.3% 40.3%, transparent 40.6%),
+		linear-gradient(22deg, transparent 0 47%, rgba(255, 247, 234, 0.055) 47.3% 48.2%, transparent 48.5%),
+		linear-gradient(155deg, transparent 0 42%, rgba(194, 144, 88, 0.08) 42.3% 43.2%, transparent 43.5%),
+		linear-gradient(16deg, transparent 0 58%, rgba(255, 247, 234, 0.035) 58.3% 59.1%, transparent 59.4%);
+	clip-path: polygon(0 78%, 12% 63%, 22% 72%, 36% 33%, 48% 80%, 62% 67%, 75% 75%, 90% 58%, 100% 74%, 100% 100%, 0 100%);
+	opacity: 0.38;
+	z-index: -1;
+}
+
+.coffee_common_footer a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.coffee_common_footer_inner {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	grid-template-columns: minmax(205px, 1.05fr) minmax(128px, 0.62fr) minmax(150px, 0.74fr) minmax(150px, 0.72fr) minmax(220px, 0.95fr);
+	gap: clamp(18px, 3vw, 42px);
+	max-width: 1480px;
+	margin: 0 auto;
+}
+
+.coffee_common_footer_brand,
+.coffee_common_footer_col,
+.coffee_common_footer_newsletter,
+.coffee_common_footer_store,
+.coffee_common_footer_location {
+	position: relative;
+	z-index: 1;
+}
+
+.coffee_common_footer_logo {
+	display: inline-flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 16px;
+}
+
+.coffee_common_footer_logo_mark {
+	position: relative;
+	display: grid;
+	place-items: center;
+	width: 50px;
+	height: 50px;
+	border: 1px solid rgba(194, 144, 88, 0.74);
+	border-radius: 50%;
+	background:
+		radial-gradient(circle at 70% 30%, rgba(255, 247, 234, 0.18), transparent 3px),
+		rgba(255, 247, 234, 0.035);
+	box-shadow: inset 0 0 24px rgba(194, 144, 88, 0.12);
+}
+
+.coffee_common_footer_logo_mark::before {
+	content: "";
+	position: absolute;
+	left: 12px;
+	bottom: 15px;
+	width: 26px;
+	height: 15px;
+	border-left: 1px solid #c29058;
+	border-bottom: 1px solid #c29058;
+	transform: skewX(-34deg) rotate(-10deg);
+	transform-origin: left bottom;
+}
+
+.coffee_common_footer_logo_mark span {
+	position: absolute;
+	right: 11px;
+	top: 14px;
+	width: 9px;
+	height: 9px;
+	border-radius: 50%;
+	background: #c29058;
+	box-shadow:
+		0 -7px 0 -3px #c29058,
+		6px 0 0 -3px #c29058,
+		0 7px 0 -3px #c29058,
+		-6px 0 0 -3px #c29058;
+}
+
+.coffee_common_footer_logo strong {
+	color: #fff7ea;
+	font-size: 1.02rem;
+	line-height: 1.35;
+	font-weight: 500;
+	letter-spacing: 0.30em;
+}
+
+.coffee_common_footer_brand p,
+.coffee_common_footer_newsletter p,
+.coffee_common_footer_store p {
+	margin: 0;
+	color: #dfcdb9;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 0.88rem;
+	line-height: 1.7;
+}
+
+.coffee_common_footer_roastery {
+	display: inline-block;
+	margin-top: 14px;
+	color: #c29058;
+	font-size: 0.68rem;
+	font-weight: 900;
+	line-height: 1.65;
+	letter-spacing: 0.16em;
+}
+
+.coffee_common_footer_socials {
+	display: flex;
+	gap: 10px;
+	margin-top: 18px;
+}
+
+.coffee_common_footer_socials a {
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	border: 1px solid rgba(194, 144, 88, 0.58);
+	border-radius: 999px;
+	color: #cfa06d;
+	font-size: 0.88rem;
+	font-weight: 800;
+	transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease, color 0.28s ease;
+}
+
+.coffee_common_footer_socials a:hover {
+	transform: translateY(-3px);
+	border-color: rgba(255, 247, 234, 0.54);
+	background: rgba(255, 247, 234, 0.08);
+	color: #fff7ea;
+}
+
+.coffee_common_footer h2 {
+	position: relative;
+	margin: 4px 0 18px;
+	padding-bottom: 11px;
+	color: #fff7ea;
+	font-size: 0.80rem;
+	font-weight: 900;
+	letter-spacing: 0.22em;
+}
+
+.coffee_common_footer h2::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 38px;
+	height: 2px;
+	background: linear-gradient(90deg, #c29058, transparent);
+}
+
+.coffee_common_footer_col a {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px;
+	min-height: 26px;
+	margin-top: 10px;
+	color: #e6d6c4;
+	font-size: 0.87rem;
+	transition: color 0.28s ease, transform 0.28s ease;
+}
+
+.coffee_common_footer_col a::before {
+	content: "";
+	position: absolute;
+	left: -14px;
+	width: 0;
+	height: 1px;
+	background: #c29058;
+	transition: width 0.28s ease;
+}
+
+.coffee_common_footer_col a span {
+	color: #c29058;
+	display: inline-grid;
+	place-items: center;
+	width: 18px;
+	height: 18px;
+	border: 1px solid rgba(194, 144, 88, 0.42);
+	border-radius: 999px;
+	color: #c29058;
+	font-size: 0.96rem;
+	line-height: 1;
+	transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease, color 0.28s ease;
+}
+
+.coffee_common_footer_col a:hover {
+	color: #fff7ea;
+	transform: translateX(4px);
+}
+
+.coffee_common_footer_col a:hover::before {
+	width: 8px;
+}
+
+.coffee_common_footer_col a:hover span {
+	transform: translateX(4px) scale(1.04);
+	border-color: rgba(255, 247, 234, 0.55);
+	background: rgba(255, 247, 234, 0.07);
+	color: #fff7ea;
+}
+
+.coffee_common_footer_mail_box {
+	display: grid;
+	grid-template-columns: 1fr 50px;
+	align-items: center;
+	min-height: 48px;
+	margin-top: 20px;
+	border: 1px solid rgba(194, 144, 88, 0.5);
+	border-radius: 10px;
+	background: rgba(255, 247, 234, 0.035);
+	box-shadow: inset 0 1px 0 rgba(255, 247, 234, 0.05);
+	overflow: hidden;
+}
+
+.coffee_common_footer_mail_box span {
+	padding: 0 18px;
+	color: #9f876d;
+	font-size: 0.84rem;
+}
+
+.coffee_common_footer_mail_box b {
+	display: grid;
+	place-items: center;
+	height: 100%;
+	background: linear-gradient(135deg, rgba(194, 144, 88, 0.34), rgba(194, 144, 88, 0.12));
+	color: #d7aa73;
+	font-size: 1.15rem;
+	font-weight: 400;
+}
+
+.coffee_common_footer_newsletter small {
+	display: block;
+	height: auto;
+	margin-top: 16px;
+	color: #a99178;
+	font-size: 0.72rem;
+	line-height: 1.65;
+	text-shadow: none;
+}
+
+.coffee_common_footer_store_card {
+	padding: 18px 18px 17px;
+	border: 1px solid rgba(194, 144, 88, 0.24);
+	border-radius: 12px;
+	background:
+		radial-gradient(circle at 10% 0%, rgba(194, 144, 88, 0.16), transparent 15rem),
+		rgba(255, 247, 234, 0.035);
+	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 247, 234, 0.05);
+}
+
+.coffee_common_footer_store_row {
+	display: grid;
+	grid-template-columns: 22px 1fr;
+	gap: 11px;
+	align-items: start;
+}
+
+.coffee_common_footer_store_row + .coffee_common_footer_store_row {
+	margin-top: 14px;
+	padding-top: 14px;
+	border-top: 1px solid rgba(255, 247, 234, 0.10);
+}
+
+.coffee_common_footer_store_icon {
+	display: grid;
+	place-items: center;
+	width: 22px;
+	height: 22px;
+	color: #c29058;
+	font-size: 1rem;
+}
+
+.coffee_common_footer_store_hours p {
+	font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+	font-size: 0.80rem;
+	line-height: 1.65;
+}
+
+.coffee_common_footer_store_hours strong {
+	float: right;
+	margin-left: 12px;
+	color: #dfcdb9;
+	font-weight: 600;
+}
+
+.coffee_common_footer_store_card > a {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	margin-top: 16px;
+	color: #c29058;
+	font-size: 0.72rem;
+	font-weight: 900;
+	letter-spacing: 0.14em;
+	transition: color 0.28s ease, transform 0.28s ease;
+}
+
+.coffee_common_footer_store_card > a span {
+	transition: transform 0.28s ease;
+}
+
+.coffee_common_footer_store_card > a:hover {
+	color: #fff7ea;
+	transform: translateX(3px);
+}
+
+.coffee_common_footer_store_card > a:hover span {
+	transform: translateX(5px);
+}
+
+
+.coffee_common_footer_location_card {
+	display: grid;
+	grid-template-columns: 26px 1fr;
+	gap: 12px;
+	align-items: start;
+	padding: 16px 16px 15px;
+	border: 1px solid rgba(194, 144, 88, 0.24);
+	border-radius: 12px;
+	background:
+		radial-gradient(circle at 10% 0%, rgba(194, 144, 88, 0.16), transparent 14rem),
+		rgba(255, 247, 234, 0.035);
+	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 247, 234, 0.05);
+}
+
+.coffee_common_footer_location_icon {
+	display: grid;
+	place-items: center;
+	width: 26px;
+	height: 26px;
+	border: 1px solid rgba(194, 144, 88, 0.44);
+	border-radius: 999px;
+	color: #c29058;
+	font-size: 0.86rem;
+	line-height: 1;
+}
+
+.coffee_common_footer_location_card strong {
+	display: block;
+	margin-bottom: 8px;
+	color: #fff7ea;
+	font-size: 0.78rem;
+	font-weight: 800;
+	line-height: 1.55;
+	letter-spacing: 0.10em;
+}
+
+.coffee_common_footer_location_card p {
+	margin: 0;
+	color: #dfcdb9;
+	font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+	font-size: 0.80rem;
+	font-weight: 600;
+	line-height: 1.85;
+}
+
+.coffee_common_footer_bottom {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	max-width: 1480px;
+	margin: 30px auto 0;
+	padding-top: 16px;
+	border-top: 1px solid rgba(255, 247, 234, 0.12);
+	color: #bda789;
+	font-size: 0.76rem;
+}
+
+.coffee_common_footer_bottom div {
+	display: flex;
+	align-items: center;
+	gap: 0;
+}
+
+.coffee_common_footer_bottom a {
+	position: relative;
+	padding: 0 18px;
+	color: #d2bda6;
+	transition: color 0.28s ease;
+}
+
+.coffee_common_footer_bottom a + a::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 1px;
+	height: 16px;
+	background: rgba(194, 144, 88, 0.58);
+	transform: translateY(-50%);
+}
+
+.coffee_common_footer_bottom a:last-child {
+	padding-right: 0;
+}
+
+.coffee_common_footer_bottom a:hover {
+	color: #fff7ea;
+}
+
+@media (max-width: 1260px) {
+	body.user:has(.coffee_reference_top) {
+		--coffee-footer-side-offset: 286px;
+	}
+}
+
+@media (max-width: 1180px) {
+	.coffee_common_footer_inner {
+		grid-template-columns: 1fr 0.72fr 0.86fr 0.8fr 1fr;
+		gap: 24px 26px;
+	}
+}
+
+
+@media (max-width: 1120px) {
+	.coffee_common_footer_inner {
+		grid-template-columns: 1.1fr 0.75fr 0.85fr;
+	}
+
+	.coffee_common_footer_location {
+		grid-column: span 2;
+	}
+}
+
+@media (max-width: 1040px) {
+	body.user:has(.coffee_reference_top) {
+		--coffee-footer-side-offset: 0px;
+	}
+}
+
+@media (max-width: 980px) {
+	body.user:has(.coffee_concept_page) {
+		--coffee-footer-side-offset: 0px;
+	}
+}
+
+@media (max-width: 860px) {
+	.coffee_common_footer {
+		padding: 44px 24px 24px;
+	}
+
+	.coffee_common_footer::before {
+		top: 28px;
+		left: 24px;
+		right: 24px;
+	}
+
+	.coffee_common_footer_inner {
+		grid-template-columns: 1fr 1fr;
+		gap: 30px 28px;
+	}
+
+	.coffee_common_footer_brand,
+	.coffee_common_footer_location {
+		grid-column: 1 / -1;
+	}
+
+	
+.coffee_common_footer_location_card {
+	display: grid;
+	grid-template-columns: 26px 1fr;
+	gap: 12px;
+	align-items: start;
+	padding: 16px 16px 15px;
+	border: 1px solid rgba(194, 144, 88, 0.24);
+	border-radius: 12px;
+	background:
+		radial-gradient(circle at 10% 0%, rgba(194, 144, 88, 0.16), transparent 14rem),
+		rgba(255, 247, 234, 0.035);
+	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 247, 234, 0.05);
+}
+
+.coffee_common_footer_location_icon {
+	display: grid;
+	place-items: center;
+	width: 26px;
+	height: 26px;
+	border: 1px solid rgba(194, 144, 88, 0.44);
+	border-radius: 999px;
+	color: #c29058;
+	font-size: 0.86rem;
+	line-height: 1;
+}
+
+.coffee_common_footer_location_card strong {
+	display: block;
+	margin-bottom: 8px;
+	color: #fff7ea;
+	font-size: 0.78rem;
+	font-weight: 800;
+	line-height: 1.55;
+	letter-spacing: 0.10em;
+}
+
+.coffee_common_footer_location_card p {
+	margin: 0;
+	color: #dfcdb9;
+	font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+	font-size: 0.80rem;
+	font-weight: 600;
+	line-height: 1.85;
+}
+
+.coffee_common_footer_bottom {
+		align-items: flex-start;
+		flex-direction: column;
+		margin-top: 32px;
+	}
+}
+
+@media (max-width: 560px) {
+	.coffee_common_footer_inner {
+		grid-template-columns: 1fr;
+	}
+
+	.coffee_common_footer_logo strong {
+		letter-spacing: 0.22em;
+	}
+
+	.coffee_common_footer_col a {
+		justify-content: flex-start;
+	}
+
+	.coffee_common_footer_bottom div {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	.coffee_common_footer_bottom a {
+		padding: 0;
+	}
+
+	.coffee_common_footer_bottom a + a::before {
+		display: none;
+	}
+}
