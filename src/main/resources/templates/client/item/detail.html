@@ -45,6 +45,92 @@
 				<input type="submit" value="戻る" class="back_button" />
 			</form>
 		</div>
+		 <section class="review-section" aria-labelledby="review-heading">
+        <div class="review-section__header">
+            <div>
+                <p class="eyebrow">Customer Reviews</p>
+                <h2 id="review-heading">レビュー</h2>
+                <p>この商品を使った感想を確認できます。</p>
+            </div>
+            <div class="review-score-card" aria-label="レビュー集計">
+                <span class="review-score-card__label">Average</span>
+                <strong th:text="${reviewAverage != null ? reviewAverage : '0.0'}">0.0</strong>
+                <span class="review-stars" aria-hidden="true">★★★★★</span>
+                <small th:text="${reviewCount != null ? reviewCount + '件のレビュー' : '0件のレビュー'}">0件のレビュー</small>
+            </div>
+        </div>
+
+        <div class="review-layout">
+            <div class="review-list-panel">
+                <div class="review-list" th:if="${reviewLists != null and !#lists.isEmpty(reviewLists)}">
+                    <article class="review-card" th:each="review : ${reviewLists}">
+                        <div class="review-card__top">
+                            <div>
+                                <p class="review-card__user" th:text="${review.user.name}">投稿者</p>
+                                <time th:text="${#dates.format(review.createdAtText, 'yyyy/MM/dd')}">投稿日時</time>
+                            </div>
+                            <div class="review-card__rating" aria-label="星評価">
+                                <span th:each="star : ${#numbers.sequence(1, 5)}"
+                                      th:classappend="${review.rating != null and star <= review.rating} ? ' is-active' : ''">★</span>
+                            </div>
+                        </div>
+                        <h3 th:text="${review.title != null and !#strings.isEmpty(review.title) ? review.title : 'タイトルなし'}">レビュータイトル</h3>
+                        <p class="review-card__comment" th:text="${review.comment}">レビュー本文</p>
+                        <form class="review-form" th:if = "${session.user != null and session.user.authority == 2 and review.user.id == session.user.id}"th:action="@{/client/review/delete}" method="post">
+							<input type="hidden" name="id" th:field="*{id}">
+							<input type="hidden" name="reviewId" th:value="${review.id}">
+                        	<input type="submit" value = "削除"/>
+                        </form>
+                         <form class="review-form" th:if = "${session.user != null and session.user.authority == 2 and review.user.id == session.user.id}" th:action="@{/client/review/edit}" method="post">
+							<input type="hidden" name="id" th:field="*{id}">
+							<input type="hidden" name="reviewId" th:value="${review.id}">
+                        	<input type="submit" value = "編集"/>
+                        </form>
+
+                    </article>
+                </div>
+
+                <div class="review-empty-state" th:if="${reviewLists == null or #lists.isEmpty(reviewLists)}">
+                    <span>☆</span>
+                    <h3>レビューはまだありません</h3>
+                    <p>Controller側でレビュー取得処理を実装すると、このエリアにレビューカードが表示されます。</p>
+                </div>
+            </div>
+
+            <aside class="review-form-panel" aria-label="レビュー投稿フォーム">
+                <p class="eyebrow">Write a Review</p>
+                <h2>レビューを書く</h2>
+                <p>星評価・タイトル・本文を入力して、この商品の感想を投稿できます。</p>
+
+                <form class="review-form" th:action="@{/client/review/add}" method="post">
+                    <input type="hidden" name="id" th:value="*{id}">
+
+                    <fieldset class="review-rating-field">
+                        <legend>星評価 <span>必須</span></legend>
+                        <div class="review-rating-options">
+                            <label><input type="radio" name="rating" value="5" checked required><span>★★★★★</span></label>
+                            <label><input type="radio" name="rating" value="4"><span>★★★★☆</span></label>
+                            <label><input type="radio" name="rating" value="3"><span>★★★☆☆</span></label>
+                            <label><input type="radio" name="rating" value="2"><span>★★☆☆☆</span></label>
+                            <label><input type="radio" name="rating" value="1"><span>★☆☆☆☆</span></label>
+                        </div>
+                    </fieldset>
+
+                    <label class="review-form__field">
+                        <span>レビュータイトル <small>任意 / 100文字以内</small></span>
+                        <input type="text" name="title" maxlength="100" placeholder="例：いいかんじ">
+                    </label><br>
+
+                    <label class="review-form__field">
+                        <span>レビュー本文 <small>必須 / 1000文字以内</small></span>
+                        <textarea name="comment" maxlength="1000" required placeholder="いい感じの文章を入力してください"></textarea>
+                    </label><br>
+
+                    <input type="submit" value ="レビューを投稿する">
+                </form>
+            </aside>
+        </div>
+    </section>
 	</div>
 
 </body>

@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jakarta.servlet.http.HttpSession;
 import jp.co.sss.shop.bean.ItemBean;
+import jp.co.sss.shop.bean.ReviewBean;
 import jp.co.sss.shop.entity.Item;
 import jp.co.sss.shop.entity.OrderItem;
+import jp.co.sss.shop.entity.Review;
 import jp.co.sss.shop.repository.ItemRepository;
 import jp.co.sss.shop.repository.OrderItemRepository;
+import jp.co.sss.shop.repository.ReviewRepository;
 import jp.co.sss.shop.service.BeanTools;
 import jp.co.sss.shop.util.Constant;
 
@@ -33,7 +36,9 @@ public class ClientItemShowController {
 	ItemRepository itemRepository;
 	@Autowired
 	OrderItemRepository orderItemRepository;
-
+	@Autowired
+	ReviewRepository reviewRepository;
+	
 	/**
 	 * Entity、Form、Bean間のデータコピーサービス
 	 */
@@ -93,7 +98,24 @@ public class ClientItemShowController {
 		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
 		//リクエストスコープにbeanListを保存
 		model.addAttribute("item", beanList.get(0));
-
+		
+		boolean isReview = reviewRepository.findByItemId(id).isEmpty();
+		if(isReview) {
+			model.addAttribute("reviewAverage", null);
+			model.addAttribute("reviewCount", null);
+			model.addAttribute("reviewList", null);
+		}else {
+			List<Review> reviewList = reviewRepository.findByItemId(id);
+			List<ReviewBean> reviewBeanList = beanTools.copyrReviewBeanList(reviewList);
+			int sum = 0;
+			for(ReviewBean review:reviewBeanList) {
+				sum += review.getRating();
+			}
+			double avg = sum/(double)reviewList.size();
+			model.addAttribute("reviewAverage", avg);
+			model.addAttribute("reviewCount", reviewList.size());
+			model.addAttribute("reviewLists", reviewList);
+		}
 		return "client/item/detail";
 	}
 
@@ -111,8 +133,6 @@ public class ClientItemShowController {
 		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
 		
 		model.addAttribute("items", itemBeanList);
-		
-		
 		return "client/item/list";
 	}
 

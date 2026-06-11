@@ -11,11 +11,13 @@ import jp.co.sss.shop.bean.CategoryBean;
 import jp.co.sss.shop.bean.ItemBean;
 import jp.co.sss.shop.bean.OrderBean;
 import jp.co.sss.shop.bean.OrderItemBean;
+import jp.co.sss.shop.bean.ReviewBean;
 import jp.co.sss.shop.entity.Category;
 import jp.co.sss.shop.entity.Favorite;
 import jp.co.sss.shop.entity.Item;
 import jp.co.sss.shop.entity.Order;
 import jp.co.sss.shop.entity.OrderItem;
+import jp.co.sss.shop.entity.Review;
 import jp.co.sss.shop.form.ItemForm;
 
 /**
@@ -224,24 +226,44 @@ public class BeanTools {
 	/**
 	 * Favoriteエンティティのリストから、ItemBeanのリストを生成
 	 * 
-	 * @param Favorite エンティティのリスト
+	 * @param  Favorite エンティティのリスト
 	 * @return ItemBeanのリスト 
 	 */
 	public List<ItemBean>copyrFavoriteBean(List<Favorite> favorite){
 		
-		//お気に入り情報の取得
+		//お気に入りBeanリストの生成
 		 List<ItemBean> itemBeanList = new ArrayList<>();
 		 for (Favorite favoriteEntity : favorite) {
+			//itemBeanにコピー
 			 ItemBean itemBean = new ItemBean();
-			 //itemBeanにコピー
 			 BeanUtils.copyProperties(favoriteEntity.getItem(), itemBean);
+			 //itemBeanに追加
 			 itemBean.setCategoryId(favoriteEntity.getItem().getCategory().getId());
 			 itemBean.setCategoryName(favoriteEntity.getItem().getCategory().getName());
-			 
-			 
 			 itemBeanList.add(itemBean);
 		}
 		 return itemBeanList;
-		 
+	}
+	
+	/**
+	 * Reviewエンティティのリストから、ReviewBeanのリストを生成
+	 * 
+	 * @param  Review エンティティのリスト
+	 * @return ReviewBeanのリスト 
+	 */
+	public List<ReviewBean>copyrReviewBeanList(List<Review> reviewList){
+		//レビューBeanの生成
+		List<ReviewBean> reviewBeanList = new ArrayList<>();
+		for(Review review : reviewList) {
+			//ReviewBeanにコピー
+			ReviewBean reviewBean = new ReviewBean();
+			BeanUtils.copyProperties(review, reviewBean);
+			//ReviewBeanに追加
+			reviewBean.setItemId(review.getItem().getId());
+			reviewBean.setUserId(review.getUser().getId());
+			reviewBean.setUserName(review.getUser().getName());
+			reviewBeanList.add(reviewBean);
+		}
+		return reviewBeanList;
 	}
 }

@@ -52,8 +52,7 @@ public class ClientBasketController {
 			basketBean.setStock(item.getStock());
 			basketBean.setOrderNum(basketBean.getOrderNum());
 			baskets.add(basketBean);
-			session.setAttribute("basketBeans", baskets);
-			return"redirect:/client/basket/list";
+			
 		}else {
 			for(BasketBean beanItem:basketsList) {
 				if(beanItem.getId() == id) {
@@ -64,7 +63,7 @@ public class ClientBasketController {
 						itemNameListLessThan.add(beanItem.getName());
 						redirectAttributes.addFlashAttribute("itemNameListLessThan",itemNameListLessThan);
 					}
-					//新規商品がない
+					//新規商品ではない
 					isItem =false;
 				}
 				baskets.add(beanItem);
@@ -87,11 +86,9 @@ public class ClientBasketController {
 				basketBean.setOrderNum(basketBean.getOrderNum());
 				baskets.add(basketBean);
 			}
-				
-			session.setAttribute("basketBeans", baskets);
-			return"redirect:/client/basket/list";
 		}
-		
+		session.setAttribute("basketBeans", baskets);
+		return"redirect:/client/basket/list";
 	}
 	
 	/**
