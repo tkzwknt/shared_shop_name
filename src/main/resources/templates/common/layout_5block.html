@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
     th:fragment="layout(title,body)">
 <head>
@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/layout.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/coffee_story.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/components/header.css}" />
 <title  th:replace="${title}"></title>
 </head>
 <body class="user" th:classappend="${layoutBodyClass}">
@@ -14,10 +15,6 @@
 	<header>
 		<div th:replace="~{common/header :: layout-header}"></div>
 	</header>
-	<!--/* ナビゲーションバー */-->
-	<nav th:if="${session.user == null or session.user.authority == 2}" class="navi_area">
-		<div th:replace="~{common/menu :: layout-menu}"></div>
-	</nav>
 	<div class="container" th:classappend="${layoutNoSidebar == true} ? ' container--no-sidebar' : ''">
 		<!--/* サイドバー */-->
 		<aside th:unless="${layoutNoSidebar == true}" th:replace="~{common/sidebar :: layout-sidebar}"></aside>
