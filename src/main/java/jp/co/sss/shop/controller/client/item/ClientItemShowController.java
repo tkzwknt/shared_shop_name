@@ -107,7 +107,7 @@ public class ClientItemShowController {
 	 */
 	@RequestMapping(path = "/client/item/list/{sortType}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String beansList(@PathVariable Integer sortType, Model model, HttpSession session) {
-		List<Item> itemList = itemRepository.findAll();
+		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
 		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
 		
 		model.addAttribute("items", itemBeanList);
