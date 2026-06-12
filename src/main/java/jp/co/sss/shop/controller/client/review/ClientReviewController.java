@@ -10,11 +10,11 @@ import jp.co.sss.shop.bean.UserBean;
 import jp.co.sss.shop.form.ReviewForm;
 import jp.co.sss.shop.service.ReviewService;
 @Controller
-public class ReviewController {
+public class ClientReviewController {
 //	@Autowired
 //	ReviewRepository reviewRepository;
 	private final ReviewService reviewService;
-	public ReviewController(ReviewService reviewService) {
+	public ClientReviewController(ReviewService reviewService) {
 		this.reviewService = reviewService;
 	}
 	
@@ -26,6 +26,7 @@ public class ReviewController {
 	 */
 	@RequestMapping(path = "/client/review/add", method = RequestMethod.POST )
     public String reviewadd(@RequestParam("id") Integer id,ReviewForm reviewForm,HttpSession session) {
+		//会員IDと商品IDと入力値をDBへ保存
 		UserBean loggedInUser = (UserBean) session.getAttribute("user");
 		Integer userId=loggedInUser.getId();
 		reviewService.saveReview(userId,id,reviewForm);  
@@ -40,6 +41,7 @@ public class ReviewController {
 	 */
 	@RequestMapping(path = "/client/review/delete", method = RequestMethod.POST )
     public String reviewdelete(@RequestParam("id") Integer id,@RequestParam("reviewId") Integer reviewId) {
+		//主キーで取り出してレビューを削除
     	reviewService.deleteReview(reviewId);
     	return "redirect:/client/item/detail/" +id;
     }
@@ -48,11 +50,12 @@ public class ReviewController {
 	 * レビュー編集
 	 * 
 	 * @param   id 商品ID  reviewId  レビューID　　model    Viewとの値受渡し
-	 * @return "redirect:/client/item/detail/" +id 商品詳細画面 
+	 * @return "client/review/edit レビュー編集画面
 	 */
 	@RequestMapping(path = "/client/review/edit", method = RequestMethod.POST )
-    public String reviewedit(@RequestParam("id") Integer id,@RequestParam("reviewId") Integer reviewId,Model model) {
-    	reviewService.editReview(reviewId,id,model);
+    public String reviewedit(@RequestParam("reviewId") Integer reviewId,Model model) {
+		//主キーを取り出してレビューフォームに渡す
+    	reviewService.editReview(reviewId,model);
     	return "client/review/edit";
     }
 	
@@ -64,6 +67,7 @@ public class ReviewController {
 	 */
 	@RequestMapping(path = "/client/review/update", method = RequestMethod.POST )
     public String reviewupdate(@RequestParam("id") Integer id,@RequestParam("reviewId") Integer reviewId,ReviewForm reviewForm,HttpSession session) {
+		//入力された値に更新する
 		UserBean loggedInUser = (UserBean) session.getAttribute("user");
 		Integer userId=loggedInUser.getId();
     	reviewService.updateReview(reviewId,reviewForm,userId,id);

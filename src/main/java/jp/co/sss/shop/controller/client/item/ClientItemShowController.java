@@ -38,7 +38,7 @@ public class ClientItemShowController {
 	OrderItemRepository orderItemRepository;
 	@Autowired
 	ReviewRepository reviewRepository;
-	
+
 	/**
 	 * Entity、Form、Bean間のデータコピーサービス
 	 */
@@ -53,6 +53,9 @@ public class ClientItemShowController {
 	 */
 	@RequestMapping(path = "/", method = { RequestMethod.GET, RequestMethod.POST })
 	public String index(Model model) {
+		// トップ画面だけサイドバーを非表示にし、トップ専用のbodyクラスを付与
+		model.addAttribute("layoutNoSidebar", true);
+		model.addAttribute("layoutBodyClass", "top_page_body");
 
 		//注文商品一覧を全件検索
 		List<OrderItem> orderItemEntityList = orderItemRepository.findAll();
@@ -98,29 +101,29 @@ public class ClientItemShowController {
 		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
 		//リクエストスコープにbeanListを保存
 		model.addAttribute("item", beanList.get(0));
-		
+		//レビューがあるかを判定
 		boolean isReview = reviewRepository.findByItemId(id).isEmpty();
-		if(isReview) {
+		//なければnullをViewへ渡す
+		if (isReview) {
 			model.addAttribute("reviewAverage", null);
 			model.addAttribute("reviewCount", null);
 			model.addAttribute("reviewList", null);
-		}else {
+		//あればreviewBeanListとレビュー数と評価平均をViewへ渡す
+		} else {
 			List<Review> reviewList = reviewRepository.findByItemId(id);
 			List<ReviewBean> reviewBeanList = beanTools.copyrReviewBeanList(reviewList);
 			int sum = 0;
-			for(ReviewBean review:reviewBeanList) {
+			for (ReviewBean review : reviewBeanList) {
 				sum += review.getRating();
 			}
-			double avg = sum/(double)reviewList.size();
+			double avg = sum / (double) reviewList.size();
 			model.addAttribute("reviewAverage", avg);
-			model.addAttribute("reviewCount", reviewList.size());
-			model.addAttribute("reviewLists", reviewList);
+			model.addAttribute("reviewCount", reviewBeanList.size());
+			model.addAttribute("reviewLists", reviewBeanList);
 		}
 		return "client/item/detail";
 	}
 
-	
-	
 	/**
 	 * 商品一覧画面 表示処理
 	 *
@@ -131,7 +134,7 @@ public class ClientItemShowController {
 	public String beansList(@PathVariable Integer sortType, Model model, HttpSession session) {
 		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
 		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
-		
+
 		model.addAttribute("items", itemBeanList);
 		return "client/item/list";
 	}

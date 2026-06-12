@@ -71,12 +71,12 @@ public class FavoriteController {
 	}
 	
 	@RequestMapping(path = "/client/list/favorite/add" , method = RequestMethod.POST)
-	public String addlist(@RequestParam("id") Integer id,HttpSession session) {
+	public String addlist(@RequestParam("sortType") Integer sortType,@RequestParam("id") Integer id,HttpSession session) {
 		//ログイン中の会員IDを取得
 		Integer userId = ((UserBean) session.getAttribute("user")).getId();
 		//お気に入りに追加
 		favoriteService.insertFavorite(userId,id);
-		return "redirect:/client/item/detail/" +id;
+		return "redirect:/client/item/list/"+sortType;
 	}
 	
 	/**

@@ -46,15 +46,16 @@ public class ReviewService {
 	 * @param レビューID
 	 */
 	public void deleteReview(Integer reviewId) {
+		//主キーを取り出してレビューを削除
 		reviewRepository.deleteById(reviewId);
 	}
 	
 	/**
 	 * レビューを編集
 	 *
-	 * @param reviewId レビューID  itemId 商品ID  model  Viewとの値受渡し
+	 * @param reviewId レビューID   model  Viewとの値受渡し
 	 */
-	public void editReview(Integer reviewId,Integer itemId,Model model) {
+	public void editReview(Integer reviewId,Model model) {
 
 		//選択されたレビューを呼び出し、Beanにコピー
 		Review review = reviewRepository.findById(reviewId).orElse(null);

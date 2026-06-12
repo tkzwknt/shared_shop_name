@@ -19,7 +19,7 @@
 					<label class="radio_label">
 						<input type="radio" name="payMethod" value="1" th:if="${payMethod == 1}" checked="checked"
 							onclick=" payChange();" />
-						<input type="radio" name="payMethod" value="1"
+						<input type="radio" name="payMethod" value="1"checked
 							th:unless="${payMethod == 1}" />[[#{paymethod.credit.str}]]
 					</label>
 				</li>

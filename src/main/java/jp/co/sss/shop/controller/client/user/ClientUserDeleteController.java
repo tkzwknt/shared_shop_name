@@ -14,7 +14,7 @@ import jp.co.sss.shop.form.UserForm;
 import jp.co.sss.shop.repository.UserRepository;
 
 /**
- * 会員退会（論理削除）用コントローラ
+ * 会員退会コントローラ
  */
 @Controller
 @RequestMapping("/client/user/delete")
@@ -35,9 +35,6 @@ public class ClientUserDeleteController {
 	public String deleteCheckPost() {
 		// セッションからログイン中のユーザ情報を取得
 		UserBean loggedInUser = (UserBean) session.getAttribute("user");
-//		if (loggedInUser == null) {
-//			return "redirect:/login";
-//		}
 		
 		// 削除対象の情報をデータベースから取得
 		User user = userRepository.getReferenceById(loggedInUser.getId());
@@ -71,9 +68,9 @@ public class ClientUserDeleteController {
 	}
 
 	/**
-	 * 退会処理完了（論理削除）処理
+	 * 退会完了画面　表示処理
 	 *
-	 * @return 削除完了画面表示処理(GET)へのリダイレクト
+	 * @return "redirect:/client/user/delete/complete" 削除完了画面表示処理にリダイレクト
 	 */
 	@RequestMapping(path = "/complete", method = RequestMethod.POST)
 	public String deleteCompletePost() {
@@ -93,9 +90,9 @@ public class ClientUserDeleteController {
 	}	
 
 	/**
-	 * 退会完了画面 表示処理
+	 * 退会完了画面　表示処理
 	 *
-	 * @return 退会完了画面のビュー名
+	 * @return "client/user/delete_complete"　退会完了画面に遷移
 	 */
 	@RequestMapping(path = "/complete", method = RequestMethod.GET)
 	public String deleteCompleteGet() {

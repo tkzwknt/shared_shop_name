@@ -18,7 +18,7 @@
 	</header>
 	<div class="container" th:classappend="${layoutNoSidebar == true} ? ' container--no-sidebar' : ''">
 		<!--/* サイドバー */-->
-		<aside th:unless="${layoutNoSidebar == true}" th:replace="~{common/sidebar :: layout-sidebar}"></aside>
+		<aside th:if="${layoutNoSidebar != true}" th:replace="~{common/sidebar :: layout-sidebar}"></aside>
 		<!--/* メイン */-->
 		<article class="main" th:classappend="${layoutNoSidebar == true} ? ' main--full' : ''">
 			<div th:replace="${body}"></div>
