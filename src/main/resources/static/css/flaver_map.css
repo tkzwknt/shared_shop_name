@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/*flavorエリア*/
+.flavor-map-area {
+	position: relative;
+	width: 500px;
+	height: 400px;
+	background: #ffffff;
+	border: 1px solid black;
+	border-radius: none;
+	overflow: hidden;
+}
+
+/* 十 */
+
+.flavor-map-area::before,
+.flavor-map-area::after {
+	content: "";
+	position: absolute;
+	background: black;
+}
+
+.flavor-map-area::before {
+	left: 50%;
+	top: 0;
+	width: 1px;
+	height: 100%;
+	transform: translateX(-50%);
+}
+
+.flavor-map-area::after {
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	transform: translateY(-50%);
+}
+
+/*座標*/
+
+.axis-label {
+	position: absolute;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	color: balck;
+}
+
+.axis-label.top {
+	top: 16px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.axis-label.bottom {
+	bottom: 16px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.axis-label.left {
+	left: 20px;
+	top: 50%;
+	transform: translateY(-50%) rotate(-90deg);
+}
+
+.axis-label.right {
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%) rotate(90deg);
+}
+
+/* 商品点 */
+
+.coffee-point {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	text-decoration: none;
+	z-index: 99;
+}
+
+.map-dot {
+	display: block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: yellow;
+}
+
+/* item名 */
+.map-item-name {
+	position: absolute;
+	left: 50%;
+	bottom: 28px;
+	transform: translateX(-50%);
+	background: #ffffff;
+	font-weight: 600;
+	color: black;
+}
+
+/* Hover */
+
+.coffee-point:hover .map-dot {
+	background: red;
+}

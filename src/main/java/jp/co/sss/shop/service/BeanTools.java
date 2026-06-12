@@ -94,6 +94,9 @@ public class BeanTools {
 
 		bean.setCategoryId(entity.getCategory().getId());
 		bean.setCategoryName(entity.getCategory().getName());
+		// x y
+		bean.setMapX(entity.getMapX());
+		bean.setMapY(entity.getMapY());
 
 		return bean;
 	}

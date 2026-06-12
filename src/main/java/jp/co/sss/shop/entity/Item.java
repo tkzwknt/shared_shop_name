@@ -59,6 +59,19 @@ public class Item {
 	 */
 	@Column
 	private String image;
+	
+	/**
+	 * X軸
+	 */
+	@Column(name = "map_x")
+	private Integer mapX;
+	
+	/**
+	 * Y軸
+	 */
+	@Column(name = "map_y")
+	private Integer mapY;
+
 
 	/**
 	 * 削除フラグ
@@ -287,4 +300,22 @@ public class Item {
 		this.orderItemList = orderItemList;
 	}
 
+	/**
+	 * XY
+	 */
+	public Integer getMapX() {
+		return mapX;
+	}
+
+	public void setMapX(Integer mapX) {
+		this.mapX = mapX;
+	}
+
+	public Integer getMapY() {
+		return mapY;
+	}
+
+	public void setMapY(Integer mapY) {
+		this.mapY = mapY;
+	}
 }

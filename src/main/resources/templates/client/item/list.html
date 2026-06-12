@@ -9,6 +9,24 @@
 
 <body th:object="${loginForm}" class="user item_list">
 
+	<!--	マップ-->
+	<div class="flavor-map-area">
+		
+		<div class="axis-label top">ナッツの香り</div>
+		<div class="axis-label bottom">フルーティの香り</div>
+		<div class="axis-label left">酸味</div>
+		<div class="axis-label right">苦い</div>
+
+		<a th:each="item : ${items}" class="coffee-point"
+			th:style="'left:' + ${item.mapX} + '%; top:' + ${item.mapY} + '%;'">
+
+			<span class="map-dot"></span>
+			<span class="map-item-name" th:text="${item.name}"></span>
+		</a>
+		
+	</div>
+
+
 	<h2 th:class="title" th:text="#{item}+#{title.list}"></h2>
 
 	<div class="sorted_by">

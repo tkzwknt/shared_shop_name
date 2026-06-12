@@ -46,6 +46,17 @@ public class ItemBean {
 	 * カテゴリ名
 	 */
 	private String categoryName;
+	
+	/**
+	 * X
+	 */
+	private Integer mapX;
+	
+	/**
+	 * Y
+	 */
+	private Integer mapY;
+
 
 	/**
 	 * 商品ID取得
@@ -173,6 +184,25 @@ public class ItemBean {
 	 */
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+	
+	/**
+	 * X,Ygetter,setter
+	 */
+	public Integer getMapX() {
+		return mapX;
+	}
+
+	public void setMapX(Integer mapX) {
+		this.mapX = mapX;
+	}
+
+	public Integer getMapY() {
+		return mapY;
+	}
+
+	public void setMapY(Integer mapY) {
+		this.mapY = mapY;
 	}
 
 }
