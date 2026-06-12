@@ -66,7 +66,7 @@
                     <article class="review-card" th:each="review : ${reviewLists}">
                         <div class="review-card__top">
                             <div>
-                                <p class="review-card__user" th:text="${review.user.name}">投稿者</p>
+                                <p class="review-card__user" th:text="${review.userName}">投稿者</p>
                                 <time th:text="${#dates.format(review.createdAtText, 'yyyy/MM/dd')}">投稿日時</time>
                             </div>
                             <div class="review-card__rating" aria-label="星評価">
@@ -76,12 +76,12 @@
                         </div>
                         <h3 th:text="${review.title != null and !#strings.isEmpty(review.title) ? review.title : 'タイトルなし'}">レビュータイトル</h3>
                         <p class="review-card__comment" th:text="${review.comment}">レビュー本文</p>
-                        <form class="review-form" th:if = "${session.user != null and session.user.authority == 2 and review.user.id == session.user.id}"th:action="@{/client/review/delete}" method="post">
+                        <form class="review-form" th:if = "${session.user != null and session.user.authority == 2 and review.userId == session.user.id}"th:action="@{/client/review/delete}" method="post">
 							<input type="hidden" name="id" th:field="*{id}">
 							<input type="hidden" name="reviewId" th:value="${review.id}">
                         	<input type="submit" value = "削除"/>
                         </form>
-                         <form class="review-form" th:if = "${session.user != null and session.user.authority == 2 and review.user.id == session.user.id}" th:action="@{/client/review/edit}" method="post">
+                         <form class="review-form" th:if = "${session.user != null and session.user.authority == 2 and review.userId == session.user.id}" th:action="@{/client/review/edit}" method="post">
 							<input type="hidden" name="id" th:field="*{id}">
 							<input type="hidden" name="reviewId" th:value="${review.id}">
                         	<input type="submit" value = "編集"/>
@@ -118,7 +118,7 @@
 
                     <label class="review-form__field">
                         <span>レビュータイトル <small>任意 / 100文字以内</small></span>
-                        <input type="text" name="title" maxlength="100" placeholder="例：いいかんじ">
+                        <input type="text" name="title" maxlength="100" required placeholder="例：いいかんじ">
                     </label><br>
 
                     <label class="review-form__field">

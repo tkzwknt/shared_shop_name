@@ -10,11 +10,11 @@ import jp.co.sss.shop.bean.UserBean;
 import jp.co.sss.shop.form.ReviewForm;
 import jp.co.sss.shop.service.ReviewService;
 @Controller
-public class ReviewController {
+public class ClientReviewController {
 //	@Autowired
 //	ReviewRepository reviewRepository;
 	private final ReviewService reviewService;
-	public ReviewController(ReviewService reviewService) {
+	public ClientReviewController(ReviewService reviewService) {
 		this.reviewService = reviewService;
 	}
 	

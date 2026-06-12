@@ -46,6 +46,7 @@ public class ReviewService {
 	 * @param レビューID
 	 */
 	public void deleteReview(Integer reviewId) {
+		//主キーを取り出してレビューを削除
 		reviewRepository.deleteById(reviewId);
 	}
 	

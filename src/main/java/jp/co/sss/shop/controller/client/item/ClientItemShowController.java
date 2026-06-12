@@ -113,8 +113,8 @@ public class ClientItemShowController {
 			}
 			double avg = sum/(double)reviewList.size();
 			model.addAttribute("reviewAverage", avg);
-			model.addAttribute("reviewCount", reviewList.size());
-			model.addAttribute("reviewLists", reviewList);
+			model.addAttribute("reviewCount", reviewBeanList.size());
+			model.addAttribute("reviewLists", reviewBeanList);
 		}
 		return "client/item/detail";
 	}
