@@ -2,8 +2,6 @@ package jp.co.sss.shop.controller.admin.item;
 
 import java.util.List;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jakarta.servlet.http.HttpSession;
 import jp.co.sss.shop.bean.ItemBean;
+import jp.co.sss.shop.bean.ReviewBean;
 import jp.co.sss.shop.entity.Item;
+import jp.co.sss.shop.entity.Review;
 import jp.co.sss.shop.repository.ItemRepository;
+import jp.co.sss.shop.repository.ReviewRepository;
 import jp.co.sss.shop.service.BeanTools;
 import jp.co.sss.shop.util.Constant;
 
@@ -31,7 +33,8 @@ public class AdminItemShowController {
 	 */
 	@Autowired
 	ItemRepository itemRepository;
-
+	@Autowired
+	ReviewRepository reviewRepository;
 	/**
 	 * セッション
 	 */
@@ -101,7 +104,27 @@ public class AdminItemShowController {
 
 		//Itemエンティティの各フィールドの値をItemBeanにコピー
 		ItemBean itemBean = beanTools.copyEntityToItemBean(item);
-
+		
+		//レビューがあるかを判定
+		boolean isReview = reviewRepository.findByItemId(id).isEmpty();
+		//なければnullをリクエストスコープに保存
+		if(isReview) {
+			model.addAttribute("reviewAverage", null);
+			model.addAttribute("reviewCount", null);
+			model.addAttribute("reviewList", null);
+		//あればreviewBeanListとレビュー数と評価平均をリクエストスコープに保存
+		}else {
+			List<Review> reviewList = reviewRepository.findByItemId(id);
+			List<ReviewBean> reviewBeanList = beanTools.copyrReviewBeanList(reviewList);
+			int sum = 0;
+			for(ReviewBean review:reviewBeanList) {
+				sum += review.getRating();
+			}
+			double avg = sum/(double)reviewList.size();
+			model.addAttribute("reviewAverage", avg);
+			model.addAttribute("reviewCount", reviewBeanList.size());
+			model.addAttribute("reviewLists", reviewBeanList);
+		}
 		// 商品情報をViewへ渡す
 		model.addAttribute("item", itemBean);
 		//商品登録・変更・削除用のセッションスコープを初期化

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{common/layout_4block :: layout(~{::title},~{::body/content()})}">
+
+<head>
+	<title th:text="#{item}+#{title.detail}+' | '+ #{shop.title}"> </title>
+	<meta charset="UTF-8" />
+</head>
+<body class="user user_regist_input">
+	<h2 th:class="title" th:text="#{user}+#{title.input.new}"></h2>
+	<p th:class="input_message" th:text="#{msg.regist.input}"></p>
+
+	<div class="user_info_form_area">
+
+
+		<form th:action="@{/admin/item/review/update}" method="post" class="user_info_form">
+			
+<!--			<th:block th:if="${#fields.hasErrors()}">-->
+<!--				<ul class="error_list">-->
+<!--					<li th:each="err:${#fields.detailedErrors()}" th:text="${err.message}"></li>-->
+<!--				</ul>-->
+<!--				<br />-->
+<!--			</th:block>-->
+			<article class="review-card">
+			<ul class="input_list">
+				<li>
+					<span>投稿者</span>
+					<p class="review-card__user" th:text="${review.userName}">投稿者</p>
+				</li>
+				<li>
+					<span>投稿日時</span>
+					<time th:text="${#dates.format(review.createdAtText, 'yyyy/MM/dd')}">投稿日時</time>
+				</li>
+				<li>
+					<fieldset class="review-rating-field">
+                        <legend>星評価 <span>必須</span></legend>
+                        <div class="review-rating-options">
+                            <label><input type="radio" name="rating" value="5" required th:checked="${review.rating == 5}"><span>★★★★★</span></label>
+                            <label><input type="radio" name="rating" value="4" th:checked="${review.rating == 4}"><span>★★★★☆</span></label>
+                            <label><input type="radio" name="rating" value="3" th:checked="${review.rating == 3}"><span>★★★☆☆</span></label>
+                            <label><input type="radio" name="rating" value="2" th:checked="${review.rating == 2}"><span>★★☆☆☆</span></label>
+                            <label><input type="radio" name="rating" value="1" th:checked="${review.rating == 1}"><span>★☆☆☆☆</span></label>
+                        </div>
+                    </fieldset>
+				</li>
+				
+				<li>
+					<label><span class="input_title">レビュータイトル</span></label><br>
+					<input type="text" name="title" maxlength="100" th:value="${review.title}">
+				</li>
+				<li>
+					<label><span class="input_title">レビュー本文</span></label><br>
+					<textarea name="comment" maxlength="1000" required th:text="${review.comment}"></textarea>
+				</li>
+				
+			</ul>
+			
+			<input type="hidden" name="id" th:value="${review.itemId}">
+			<input type="hidden" name="reviewId" th:value="${review.id}">
+			<input type="hidden" name="userId" th:value="${review.userId}">
+			<input type="submit" value="変更" class="send_button">
+		</form>
+		<form th:action="@{/admin/item/detail/{id}(id=${review.itemId})}" method="get">
+			 <input type="hidden" name="id" th:value="${item}">
+			<input type="submit" value="戻る" class="back_button">
+		</form>
+	</div>
+</body>
+
+</html>

@@ -101,12 +101,14 @@ public class ClientItemShowController {
 		List<ItemBean> beanList = beanTools.copyEntityListToItemBeanList(entityList);
 		//リクエストスコープにbeanListを保存
 		model.addAttribute("item", beanList.get(0));
-
+		//レビューがあるかを判定
 		boolean isReview = reviewRepository.findByItemId(id).isEmpty();
+		//なければnullをViewへ渡す
 		if (isReview) {
 			model.addAttribute("reviewAverage", null);
 			model.addAttribute("reviewCount", null);
 			model.addAttribute("reviewList", null);
+		//あればreviewBeanListとレビュー数と評価平均をViewへ渡す
 		} else {
 			List<Review> reviewList = reviewRepository.findByItemId(id);
 			List<ReviewBean> reviewBeanList = beanTools.copyrReviewBeanList(reviewList);
@@ -116,8 +118,8 @@ public class ClientItemShowController {
 			}
 			double avg = sum / (double) reviewList.size();
 			model.addAttribute("reviewAverage", avg);
-			model.addAttribute("reviewCount", reviewList.size());
-			model.addAttribute("reviewLists", reviewList);
+			model.addAttribute("reviewCount", reviewBeanList.size());
+			model.addAttribute("reviewLists", reviewBeanList);
 		}
 		return "client/item/detail";
 	}
