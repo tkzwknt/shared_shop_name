@@ -49,7 +49,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	 * @param notDeleted 削除フラグ
 	 * @return 商品エンティティ
 	 */
-	@Query("SELECT i FROM Item i LEFT JOIN OrderItem o ON o.item = i WHERE i.deleteFlag = :deleteFlag GROUP BY i.id, i.name, i.price, i.stock, i.description, i.image, i.category, i.insertDate, i.deleteFlag ORDER BY COUNT(o) DESC")
+	@Query("SELECT i FROM Item i LEFT JOIN OrderItem o ON o.item = i WHERE i.deleteFlag = :deleteFlag GROUP BY i.id, i.name, i.price, i.stock, i.description, i.image, i.category, i.mapX, i.mapY, i.insertDate, i.deleteFlag ORDER BY COUNT(o) DESC")
     List<Item> findByDeleteFlagOrderByOrderItemCountDesc(Integer deleteFlag);
 	
 	/**
