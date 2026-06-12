@@ -134,7 +134,7 @@ public class ClientItemShowController {
 	 */
 	@RequestMapping(path = "/client/item/list/{sortType}", method = RequestMethod.GET)
 	public String beansList(@PathVariable Integer sortType,
-			@RequestParam(name = "categoryId") Integer categoryId, Model model,
+			@RequestParam(name = "categoryId", defaultValue = "0") Integer categoryId, Model model,
 			HttpSession session) {
 
 		//Itemリストの初期化
