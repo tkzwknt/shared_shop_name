@@ -1,31 +1,185 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
+	th:replace="~{common/layout_5block :: layout(~{::title},~{::body/content()})}">
 <head>
-<title th:text="#{top}+' | '+ #{shop.title}"> </title>
-<meta charset="UTF-8" />
+	<title th:text="#{top}+' | '+ #{shop.title}">トップ | FRANÇAIS COFFEE</title>
+	<meta charset="UTF-8" />
 </head>
-<body class="user index">
-	<div>
-		<h2 class="title">
-				<span th:if="${sortType==1}" th:text="#{sort.latest.title}"></span>
-				<span th:if="${sortType==2 || sortType==null}" th:text="#{sort.hotsell.title}"></span>
-		</h2>
+<body>
+	<div class="coffee_top_page">
+		<section class="ourstory" id="top-story">
+			<div class="storydescription">
+				<p class="smalltitle-story">01&nbsp;&nbsp;OUR STORY</p>
+				<h1 class="heading-story">Rooted in<br />nature.<br />Crafted with<br />Purpose.</h1>
+				<p class="summary-story">
+					From the world's finest coffee-growing regions,<br />
+					we source exceptional beans and craft each roast<br />
+					with care, respect, and intention. Our commitment<br />
+					to nature and community is at the heart<br />
+					of everything we do.
+				</p>
+				<div class="button006">
+					<a th:href="@{/client/story}">LEARN OUR STORY</a>
+				</div>
+			</div>
+			<div class="ourstory-image">
+				<img class="storyimage" th:src="@{/static/images/ourstory.webp}" alt="コーヒー豆と自然を感じるイメージ" />
+			</div>
+		</section>
+
+		<section class="story-under" aria-label="coffee promise">
+			<div class="mountain">
+				<span class="mountain-img-around">
+					<img class="mountain-img" th:src="@{/static/images/mountain.svg}" alt="" />
+				</span>
+				<div>
+					<p class="mountain-title">SINGLE ORIGIN/<br />産地の個性</p>
+					<p class="mountain-ex">
+						選び抜いたsingle originの豆を<br />
+						中心に、地域ごとの<br />
+						character・clarity・quality<br />
+						を一杯ごとに丁寧に届けます。
+					</p>
+				</div>
+			</div>
+
+			<div class="grass">
+				<div class="grass-img-around">
+					<img class="grass-img" th:src="@{/static/images/grass.svg}" alt="" />
+				</div>
+				<div>
+					<p class="grass-title">SUSTAINABLE/<br />自然とつながる</p>
+					<p class="grass-ex">
+						土地と生産者を尊重する<br />
+						sustainableな姿勢で<br />
+						farmersを支えながら<br />
+						これから先のcoffee cultureを<br />
+						育てていくことを大切に<br />
+						しています。
+					</p>
+				</div>
+			</div>
+
+			<div class="fire">
+				<div class="fire-img-around">
+					<img class="fire-img" th:src="@{/static/images/fire.svg}" alt="" />
+				</div>
+				<div>
+					<p class="fire-title">SMALL BATCH/<br />少量焙煎</p>
+					<p class="fire-ex">
+						small batchで細やかに焙煎し、<br />
+						香り・balance・余韻まで<br />
+						見極めながら、<br />
+						豆本来の魅力を引き出します。
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="originsection" id="top-origin">
+			<div class="origin">
+				<p class="smalltitle-origin">02&nbsp;&nbsp;ORIGIN</p>
+				<div class="image-with-lines">
+					<img th:src="@{/static/images/earth.svg}" alt="" />
+				</div>
+			</div>
+			<div class="origin-title-ex">
+				<h2 class="origin-title">産地から始まる、一杯の個性。</h2>
+				<p class="origin-ex">
+					コーヒーの個性は、産地の自然環境や標高、
+					そして生産者の丁寧な手仕事によって育まれます。<br />
+					私たちは、世界中の信頼できる生産地から、個性豊かな豆を厳選しています。
+				</p>
+			</div>
+
+			<div class="area">
+				<article class="brazil">
+					<img class="brazil-pct" th:src="@{/static/images/Brazil.jpg}" alt="ブラジルのコーヒー産地イメージ" />
+					<img class="brazil-logo" th:src="@{/static/images/forest.svg}" alt="" />
+					<h3 class="brazil-name">BRAZIL</h3>
+					<p>広大な大地が広がる、世界最大のコーヒー生産国ブラジル。豊かな太陽の恵みが、ナッツのような香ばしさとチョコレートを思わせる優しい甘みを育みます。</p>
+					<div class="status-brazil">
+						<div class="elevation"><p>標高</p><p class="contents">800~1,300m</p></div>
+						<div class="prosess"><p>精製方法</p><p class="contents">ナチュラル</p></div>
+						<div class="flavor"><p>風味</p><p class="contents">ナッティ/チョコレート</p></div>
+					</div>
+				</article>
+
+				<article class="COLUMBIA">
+					<img class="COLUMBIA-pct" th:src="@{/static/images/SantuariodeLasLajas-1000x609.jpg}" alt="コロンビアのコーヒー産地イメージ" />
+					<img class="COLUMBIA-logo" th:src="@{/static/images/volcano.svg}" alt="" />
+					<h3 class="COLUMBIA-name">COLUMBIA</h3>
+					<p>アンデス山脈の険しい山岳地帯に位置する、コーヒー大国コロンビア。豊かな火山性土壌と理想的な気候が、芳醇な甘い香りとまろやかで奥深いコクを育みます。</p>
+					<div class="status-COLUMBIA">
+						<div class="elevation"><p>標高</p><p class="contents">1,200~2,000m</p></div>
+						<div class="prosess"><p>精製方法</p><p class="contents">ウォッシュド</p></div>
+						<div class="flavor"><p>風味</p><p class="contents">シトラス/キャラメル</p></div>
+					</div>
+				</article>
+
+				<article class="ETHIOPIA">
+					<img class="ETHIOPIA-pct" th:src="@{/static/images/Ethiopia.jpg}" alt="エチオピアのコーヒー産地イメージ" />
+					<img class="ETHIOPIA-logo" th:src="@{/static/images/sunny.svg}" alt="" />
+					<h3 class="ETHIOPIA-name">ETHIOPIA</h3>
+					<p>コーヒー発祥の地であり、比類なき個性を放つ気高き国エチオピア。圧倒的な高地がもたらす昼夜の寒暖差が、花のような華やかな香りと極上の酸を育みます。</p>
+					<div class="status-ETHIOPIA">
+						<div class="elevation"><p>標高</p><p class="contents">1,500~2,200m</p></div>
+						<div class="prosess"><p>精製方法</p><p class="contents">ウォッシュド</p></div>
+						<div class="flavor"><p>風味</p><p class="contents">フローラル/ベリー</p></div>
+					</div>
+				</article>
+			</div>
+			<div class="area-botton">
+				<a href="#top-origin">産地一覧を見る</a>
+			</div>
+		</section>
+
+		<section class="ourprosess" id="top-process">
+			<div class="origin">
+				<p class="smalltitle-ourprosess">03&nbsp;&nbsp;OUR PROCESS</p>
+				<div class="image-with-lines">
+					<img th:src="@{/static/images/earth.svg}" alt="" />
+				</div>
+			</div>
+
+			<div class="prosess-main">
+				<h2 class="prosess-title">豆の個性を引き出す、焙煎工程。</h2>
+				<p class="prosess-ex">
+					お客様のオーダーされたローストレベルに応じて<br />
+					火入れの強さや時間を緻密に調整。<br />
+					豆の持つ最大限の香りや味わいを最大限に引き出します。
+				</p>
+			</div>
+			<div class="god-img-around">
+				<img class="god-img" th:src="@{/static/images/unchi.png}" alt="焙煎工程のイメージ" />
+			</div>
+
+			<div class="process-points">
+				<div class="beans">
+					<div class="around-01"><p class="ikon-01">01</p></div>
+					<div class="beans-ex">
+						<p class="beans-subtitle">ROAST</p>
+						<p class="beans-ex-box">焙煎機に生豆を投入し、豆の水分を飛ばす。<br />豆に十分なカロリーを与えることが必要。</p>
+					</div>
+				</div>
+
+				<div class="beans-02">
+					<div class="around-01"><p class="ikon-01">02</p></div>
+					<div class="beans-ex">
+						<p class="beans-subtitle">COOLING</p>
+						<p class="beans-ex-box">焙煎後すぐに冷却し、豆の劣化を防ぎます。<br />香味を閉じ込め、クリーンで透明感のある味わいへと導きます。</p>
+					</div>
+				</div>
+
+				<div class="beans-03">
+					<div class="around-01"><p class="ikon-01">03</p></div>
+					<div class="beans-ex">
+						<p class="beans-subtitle">CUPPING</p>
+						<p class="beans-ex-box">焙煎ごとにカッピングを行い、香りや味わいのバランスを確認。日々の小さな調整が、美味しさの積み重ねになります。</p>
+					</div>
+				</div>
+			</div>
+		</section>
 	</div>
-	<div th:if="${#lists.isEmpty(items)}">
-		<p th:text="#{msg.client.item.list.none}"></p>
-	</div>
-	<div class="item_list">
-	<th:block th:each="item, status: ${items}" th:if="${status.count le 10}">
-		<!--/* 1件分の商品情報 */-->
-		<div class="item">
-			<div class="item_name" th:text="${item.name}"></div>
-			<a th:href="@{/client/item/detail/}+${item.id}">
-			    <img th:src="@{/images/{image}(image=${item.image})}" th:if="${item.image != null}" />
-			    <img th:src="@{/images/common/no_image.jpg}" th:if="${item.image == null}" />
-			</a>
-		</div>
-	</div>
-	</th:block>
 </body>
 </html>
