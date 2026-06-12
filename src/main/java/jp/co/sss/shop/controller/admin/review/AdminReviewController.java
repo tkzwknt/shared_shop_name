@@ -30,10 +30,11 @@ public class AdminReviewController {
 	 * レビュー削除
 	 * 
 	 * @param  id 商品ID  reviewId  レビューID
-	 * @return "redirect:/client/item/detail/" +id 商品詳細画面 
+	 * @return "redirect:/admin/item/detail/" +id 商品詳細画面 
 	 */
 	@RequestMapping(path = "/admin/item/review/delete", method = RequestMethod.POST )
     public String adminReviewDelete(@RequestParam("id") Integer id,@RequestParam("reviewId") Integer reviewId) {
+		//主キーを取り出してレビューを削除
     	reviewService.deleteReview(reviewId);
     	return "redirect:/admin/item/detail/" +id;
     }
@@ -41,23 +42,25 @@ public class AdminReviewController {
 	/**
 	 * レビュー編集
 	 * 
-	 * @param   id 商品ID  reviewId  レビューID　　model    Viewとの値受渡し
-	 * @return "redirect:/client/item/detail/" +id 商品詳細画面 
+	 * @param   reviewId  レビューID  model    Viewとの値受渡し
+	 * @return "admin/review/edit レビュー編集画面
 	 */
 	@RequestMapping(path = "/admin/item/review/edit", method = RequestMethod.POST )
-    public String adminReviewEdit(@RequestParam("id") Integer id,@RequestParam("reviewId") Integer reviewId,Model model) {
-    	reviewService.editReview(reviewId,id,model);
+    public String adminReviewEdit(@RequestParam("reviewId") Integer reviewId,Model model) {
+		//主キーを取り出してレビューフォームへ渡す
+    	reviewService.editReview(reviewId,model);
     	return "admin/review/edit";
     }
 	
 	/**
 	 * レビュー更新
 	 * 
-	 * @param   id 商品ID  reviewId  reviewForm  レビューフォーム session ログインユーザー
-	 * @return "redirect:/client/item/detail/" +id 商品詳細画面 
+	 * @param   id 商品ID  reviewId レビューID reviewForm  レビューフォーム session ログインユーザー
+	 * @return "redirect:/admin/item/detail/" +id 商品詳細画面 
 	 */
 	@RequestMapping(path = "/admin/item/review/update", method = RequestMethod.POST )
     public String adminReviewUpdate(@RequestParam("id") Integer id,@RequestParam("reviewId")Integer reviewId,@RequestParam("userId")Integer userId,ReviewForm reviewForm,HttpSession session) {
+		//入力された値に更新する
 		User user = userRepository.findById(userId).orElse(null);
 		UserBean userBean = new UserBean();
 		BeanUtils.copyProperties(user, userBean);

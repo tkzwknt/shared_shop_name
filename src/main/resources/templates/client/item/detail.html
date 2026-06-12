@@ -82,7 +82,6 @@
                         	<input type="submit" value = "削除"/>
                         </form>
                          <form class="review-form" th:if = "${session.user != null and session.user.authority == 2 and review.userId == session.user.id}" th:action="@{/client/review/edit}" method="post">
-							<input type="hidden" name="id" th:field="*{id}">
 							<input type="hidden" name="reviewId" th:value="${review.id}">
                         	<input type="submit" value = "編集"/>
                         </form>

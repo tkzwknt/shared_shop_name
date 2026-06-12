@@ -105,11 +105,14 @@ public class AdminItemShowController {
 		//Itemエンティティの各フィールドの値をItemBeanにコピー
 		ItemBean itemBean = beanTools.copyEntityToItemBean(item);
 		
+		//レビューがあるかを判定
 		boolean isReview = reviewRepository.findByItemId(id).isEmpty();
+		//なければnullをリクエストスコープに保存
 		if(isReview) {
 			model.addAttribute("reviewAverage", null);
 			model.addAttribute("reviewCount", null);
 			model.addAttribute("reviewList", null);
+		//あればreviewBeanListとレビュー数と評価平均をリクエストスコープに保存
 		}else {
 			List<Review> reviewList = reviewRepository.findByItemId(id);
 			List<ReviewBean> reviewBeanList = beanTools.copyrReviewBeanList(reviewList);
