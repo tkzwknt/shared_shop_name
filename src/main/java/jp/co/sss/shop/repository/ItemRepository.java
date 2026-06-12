@@ -51,8 +51,8 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	 * @return 商品エンティティ
 	 */
 	@Query("SELECT i FROM Item i LEFT JOIN OrderItem o ON o.item = i WHERE i.deleteFlag = :deleteFlag GROUP BY i.id, i.name, i.price, i.stock, i.description, i.image, i.category, i.mapX, i.mapY, i.insertDate, i.deleteFlag ORDER BY COUNT(o) DESC")
-    List<Item> findByDeleteFlagOrderByOrderItemCountDesc(Integer deleteFlag);
-	
+	List<Item> findByDeleteFlagOrderByOrderItemCountDesc(Integer deleteFlag);
+
 	/**
 	 * 削除フラグを条件にして商品登録順に検索
 	 * @param notDeleted 削除フラグ
@@ -60,6 +60,20 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	 */
 	List<Item> findByDeleteFlagOrderByInsertDateDesc(Integer deleteFlag);
 
-	//	List<Item> findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(Integer deleteFlag, Integer categoryId);
+	List<Item> findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(Integer deleteFlag, Integer categoryId);
+
+	//売れ筋淳カテゴリ対応メソッド
+	@Query("""
+			SELECT i FROM Item i
+			LEFT JOIN OrderItem o ON o.item = i
+			WHERE i.deleteFlag = :deleteFlag
+			AND i.category.id = :categoryId
+			GROUP BY i.id, i.name, i.price, i.stock, i.description, i.image,
+			         i.category, i.mapX, i.mapY, i.insertDate, i.deleteFlag
+			ORDER BY COUNT(o) DESC
+			""")
+	List<Item> findByDeleteFlagAndCategoryIdOrderByOrderItemCountDesc(
+			@Param("deleteFlag") Integer deleteFlag,
+			@Param("categoryId") Integer categoryId);
 
 }

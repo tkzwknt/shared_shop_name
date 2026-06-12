@@ -3,12 +3,14 @@ package jp.co.sss.shop.controller.client.item;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import jp.co.sss.shop.bean.ItemBean;
@@ -131,44 +133,72 @@ public class ClientItemShowController {
 	 * @return ""client/item/detail" 商品の詳細画面
 	 */
 	@RequestMapping(path = "/client/item/list/{sortType}", method = RequestMethod.GET)
-	public String beansList(@PathVariable Integer sortType,Model model, HttpSession session) {
-//		List<Item> itemList = itemRepository.findAll();
-		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
-		
-//		if (categoryId == 0) {
-//			itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
-//		} else {
-//			model.addAttribute("categoryId", categoryId);
-//		}
-		//		}else if(categoryId == 1) {
-		//			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
-		//		}
+	public String beansList(@PathVariable Integer sortType,
+			@RequestParam(name = "categoryId") Integer categoryId, Model model,
+			HttpSession session) {
 
-		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
+		//Itemリストの初期化
+		List<Item> itemList;
+
+		//categoryIdが0(全件の場合)
+		if (categoryId == 0) {
+			//売れ筋順表示
+			if (sortType == 2) {
+				itemList = itemRepository.findByDeleteFlagOrderByOrderItemCountDesc(Constant.NOT_DELETED);
+				//新着順表示
+			} else {
+				itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(Constant.NOT_DELETED);
+			}
+			//カテゴリ検索が0以外(カテゴリ検索)
+		} else {
+			//売れ筋順表示
+			if (sortType == 2) {
+				itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByOrderItemCountDesc(
+						Constant.NOT_DELETED, categoryId);
+				//新着順表示
+			} else {
+				itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(
+						Constant.NOT_DELETED, categoryId);
+			}
+		}
+
+		//表示用Bean作成
+		List<ItemBean> itemBeanList = new ArrayList<>();
+
+		//List<Item>→List<ItemBean>にcopyPropertiesでListコピーできないので回す
+		for (Item item : itemList) {
+			//1件ずつ取ってくるための箱
+			ItemBean itemBean = new ItemBean();
+			//コピーしてitemBeanListに追加
+			BeanUtils.copyProperties(item, itemBean);
+			//カテゴリ名だけ別口取得
+			itemBean.setCategoryName(item.getCategory().getName());
+
+			itemBeanList.add(itemBean);
+		}
 
 		model.addAttribute("items", itemBeanList);
-
-//		model.addAttribute("categoryId", categoryId);
+		model.addAttribute("sortType", sortType);
+		model.addAttribute("categoryId", categoryId);
 
 		return "client/item/list";
 	}
-	
+
 	/**
 	 * コーヒーマップ表示
 	 */
 	@RequestMapping(path = "/client/item/map", method = RequestMethod.GET)
 	public String showMap(Model model) {
 
-	    // 削除されていない商品を取得
-	    List<Item> itemList =
-	            itemRepository.findByDeleteFlagOrderByInsertDateDesc(Constant.NOT_DELETED);
+		// 削除されていない商品を取得
+		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(Constant.NOT_DELETED);
 
-	    // Bean変換
-	    List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
+		// Bean変換
+		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
 
-	    model.addAttribute("mao·Items", itemBeanList);
+		model.addAttribute("mao·Items", itemBeanList);
 
-	    return "client/item/list";
+		return "client/item/list";
 	}
 
 }
