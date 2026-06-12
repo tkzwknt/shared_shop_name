@@ -100,7 +100,7 @@ public class ClientBasketController {
 	 * @param   session ログインユーザー 
 	 * @return "redirect:/client/basket/list" 商品の詳細画面
 	 */
-	@RequestMapping(path="/client/basket/list" ,method = RequestMethod.GET)
+	@RequestMapping(path="/client/basket/list" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public String basketList(HttpSession session) {
 		return"client/basket/list";
 	}
