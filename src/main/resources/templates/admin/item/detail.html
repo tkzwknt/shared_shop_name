@@ -79,11 +79,11 @@
                         <h3 th:text="${review.title != null and !#strings.isEmpty(review.title) ? review.title : 'タイトルなし'}">レビュータイトル</h3>
                         <p class="review-card__comment" th:text="${review.comment}">レビュー本文</p>
                         <form class="review-form" th:if = "${session.user != null and session.user.authority == 1}" th:action="@{/admin/item/review/delete}" method="post">
+							<input type="hidden" name="id" th:field="*{id}">
 							<input type="hidden" name="reviewId" th:value="${review.id}">
                         	<input type="submit" value = "削除"/>
                         </form>
                          <form class="review-form" th:if = "${session.user != null and session.user.authority == 1}" th:action="@{/admin/item/review/edit}" method="post">
-							<input type="hidden" name="id" th:field="*{id}">
 							<input type="hidden" name="reviewId" th:value="${review.id}">
                         	<input type="submit" value = "編集"/>
                         </form>

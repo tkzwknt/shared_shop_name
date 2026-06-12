@@ -31,6 +31,7 @@
 				<th th:text="#{data.item.name}"></th>
 				<th th:text="#{data.item.price}"></th>
 				<th th:text="#{category}"></th>
+				<th></th>
 			</tr>
 			<!--/* 商品一覧 */-->
 			<tr th:each="item, status: ${items}">
@@ -42,6 +43,14 @@
 				<td><a th:href="@{/client/item/detail/{id}(id=${item.id})}" th:text="${item.name}"></a></td>
 				<td th:text="${item.price}"></td>
 				<td th:text="${item.categoryName}"></td>
+				<td><div class="detail_button_area">
+				<form th:if = "${session.user == null or session.user != null and session.user.authority == 2}"th:action="@{/client/list/favorite/add}" method="post">
+            	<input type="hidden" name="id" th:value="${item.id}"/>
+            	<input type="hidden" name="sortType" th:value="${sortType}"/>
+            	<button class="button button--heart" type="submit">♥</button>
+    		</form>
+    		</div>
+    		</td>
 			</tr>
 		</table>
 	</th:block>
