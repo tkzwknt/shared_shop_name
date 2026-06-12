@@ -25,7 +25,8 @@
 				<a th:href="${session.user == null} ? @{/login} : @{/client/favorite/list}" class="shop-header__icon-link" aria-label="お気に入り">
 					<img th:src="@{/static/images/favorite.svg}" alt="" />
 				</a>
-				<a th:href="@{/client/item/list/1}" class="shop-header__icon-link" aria-label="商品検索">
+				<a th:href="@{/client/item/list/1}" method="post" class="shop-header__icon-link" aria-label="商品検索">
+<!--					<input type="hidden" id="categoryId" value="0">-->
 					<img th:src="@{/static/images/search.svg}" alt="" />
 				</a>
 				<a th:href="@{/client/basket/list}" class="shop-header__icon-link" aria-label="買い物かご">

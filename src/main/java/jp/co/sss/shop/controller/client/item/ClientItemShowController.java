@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import jp.co.sss.shop.bean.ItemBean;
@@ -130,9 +131,37 @@ public class ClientItemShowController {
 	 * @param  id   商品ID   model   Viewとの値受渡し  session ログインユーザー
 	 * @return ""client/item/detail" 商品の詳細画面
 	 */
-	@RequestMapping(path = "/client/item/list/{sortType}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String beansList(@PathVariable Integer sortType, Model model, HttpSession session) {
-		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
+	@RequestMapping(path = "/client/item/list/{sortType}", method = RequestMethod.GET)
+	public String beansList(@PathVariable Integer sortType,@RequestParam ("categoryId")Integer categoryId ,Model model, HttpSession session) {
+		List<Item> itemList = null;
+//		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
+		if(categoryId == 0) {
+			itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
+		}else if(categoryId == 1) {
+			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
+		}else if(categoryId == 2) {
+			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
+		}else if(categoryId == 3) {
+			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
+		}else if(categoryId == 4) {
+			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
+		}else if(categoryId == 5) {
+			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
+		}else if(categoryId == 6) {
+			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
+		}
+		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
+
+		model.addAttribute("items", itemBeanList);
+		return "client/item/list";
+	}
+	
+	@RequestMapping(path = "/client/item/list/{id}", method = {RequestMethod.POST,RequestMethod.GET})
+	public String beansListPath(@PathVariable Integer sortType ,Model model, HttpSession session) {
+		List<Item> itemList = null;
+//		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
+		itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
+	
 		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
 
 		model.addAttribute("items", itemBeanList);
