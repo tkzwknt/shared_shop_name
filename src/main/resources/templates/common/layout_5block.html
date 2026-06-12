@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/layout.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/stylesheet.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/coffee_story.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/coffee_top.css}" />
 <link rel="stylesheet" type="text/css" th:href="@{/css/components/header.css}" />
 <title  th:replace="${title}"></title>
 </head>
@@ -17,7 +18,7 @@
 	</header>
 	<div class="container" th:classappend="${layoutNoSidebar == true} ? ' container--no-sidebar' : ''">
 		<!--/* サイドバー */-->
-		<aside th:unless="${layoutNoSidebar == true}" th:replace="~{common/sidebar :: layout-sidebar}"></aside>
+		<aside th:if="${layoutNoSidebar != true}" th:replace="~{common/sidebar :: layout-sidebar}"></aside>
 		<!--/* メイン */-->
 		<article class="main" th:classappend="${layoutNoSidebar == true} ? ' main--full' : ''">
 			<div th:replace="${body}"></div>

@@ -16,20 +16,20 @@
 			</a>
 			<nav class="shop-header__nav" aria-label="メインメニュー">
 				<a th:href="@{/client/story}">Story</a>
-				<a href="#">Origins</a>
-				<a href="#">Brew Recipe</a>
+				<a th:href="@{/#top-origin}">Origins</a>
+				<a th:href="@{/#top-process}">Brew Recipe</a>
 				<a th:href="@{/client/item/list/1}">Coffee</a>
-				<a href="#">Brew Guide</a>
+				<a th:href="@{/#top-process}">Brew Guide</a>
 			</nav>
 			<div class="shop-header__actions">
 				<a th:href="${session.user == null} ? @{/login} : @{/client/favorite/list}" class="shop-header__icon-link" aria-label="お気に入り">
-					<img th:src="@{/images/favorite.svg}" alt="" />
+					<img th:src="@{/static/images/favorite.svg}" alt="" />
 				</a>
 				<a th:href="@{/client/item/list/1}" class="shop-header__icon-link" aria-label="商品検索">
-					<img th:src="@{/images/search.svg}" alt="" />
+					<img th:src="@{/static/images/search.svg}" alt="" />
 				</a>
 				<a th:href="@{/client/basket/list}" class="shop-header__icon-link" aria-label="買い物かご">
-					<img th:src="@{/images/shopping.svg}" alt="" />
+					<img th:src="@{/static/images/shopping.svg}" alt="" />
 				</a>
 				<a th:if="${session.user == null}" th:href="@{/login}" class="shop-header__login">Login</a>
 				<div th:if="${session.user != null}" class="shop-header__user">

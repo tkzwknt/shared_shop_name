@@ -1,0 +1,557 @@
+@charset "UTF-8";
+
+/* ---- TOP page fallback --------------------------------------------------
+   Controller の layoutNoSidebar が反映されない状態でも、
+   index.html 内の .coffee_top_page を目印にサイドバーを確実に消す。
+   Chrome / Edge では :has() が利用できます。
+------------------------------------------------------------------------ */
+body:has(.coffee_top_page) {
+	background-color: #e8d9ca !important;
+	color: rgb(51, 23, 4) !important;
+	font-family: Georgia, "Times New Roman", Times, serif !important;
+}
+
+body:has(.coffee_top_page) > .container {
+	display: block !important;
+	width: 100% !important;
+	max-width: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body:has(.coffee_top_page) > .container > aside,
+body:has(.coffee_top_page) aside.search,
+body:has(.coffee_top_page) .search_area {
+	display: none !important;
+}
+
+body:has(.coffee_top_page) > .container > .main,
+body:has(.coffee_top_page) .main {
+	display: block !important;
+	width: 100% !important;
+	max-width: none !important;
+	margin: 0 !important;
+	padding: 0 0 110px !important;
+}
+
+.top_page_body {
+	background-color: #e8d9ca;
+	color: rgb(51, 23, 4);
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.top_page_body > .container.container--no-sidebar {
+	width: 100%;
+	max-width: none;
+	margin-top: 0;
+}
+
+.top_page_body .main.main--full {
+	width: 100%;
+	padding-bottom: 110px;
+}
+
+.coffee_top_page,
+.coffee_top_page * {
+	box-sizing: border-box;
+}
+
+.coffee_top_page {
+	width: 100%;
+	overflow: hidden;
+	background-color: #e8d9ca;
+	color: rgb(51, 23, 4);
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.coffee_top_page img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.coffee_top_page a {
+	text-decoration: none;
+}
+
+.coffee_top_page p,
+.coffee_top_page h1,
+.coffee_top_page h2,
+.coffee_top_page h3 {
+	margin-top: 0;
+}
+
+.coffee_top_page .ourstory {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	gap: clamp(40px, 7vw, 130px);
+	padding: 95px 7vw 0;
+	color: rgb(51, 23, 4);
+}
+
+.coffee_top_page .ourstory-image {
+	width: min(520px, 42vw);
+	margin-top: 0;
+}
+
+.coffee_top_page .storyimage {
+	width: 100%;
+	height: 560px;
+	object-fit: cover;
+	border-top-left-radius: 120px;
+	box-shadow: 24px 24px 0 rgba(51, 23, 4, 0.12);
+}
+
+.coffee_top_page .storydescription {
+	width: min(460px, 40vw);
+	padding-top: 0;
+}
+
+.coffee_top_page .smalltitle-story,
+.coffee_top_page .smalltitle-origin,
+.coffee_top_page .smalltitle-ourprosess {
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.coffee_top_page .heading-story {
+	font-size: clamp(46px, 5vw, 72px);
+	font-weight: 800;
+	line-height: 1.05;
+	letter-spacing: 0.01em;
+	margin-bottom: 28px;
+}
+
+.coffee_top_page .summary-story {
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1.85;
+	margin-bottom: 0;
+}
+
+.coffee_top_page .button006 a,
+.coffee_top_page .area-botton a {
+	background: rgb(51, 23, 4);
+	position: relative;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: fit-content;
+	min-width: 220px;
+	padding: 12px 30px;
+	color: #f8e8bb;
+	transition: 0.3s ease-in-out;
+	font-weight: 600;
+	margin-top: 28px;
+	letter-spacing: 0.06em;
+}
+
+.coffee_top_page .button006 a:before,
+.coffee_top_page .area-botton a:before {
+	content: "";
+	position: absolute;
+	top: calc(50% - 2px);
+	right: -2em;
+	transform: translateY(calc(-50% - 2px)) rotate(30deg);
+	width: 12px;
+	height: 2px;
+	background-color: #f8e8bb;
+	transition: 0.3s;
+}
+
+.coffee_top_page .button006 a:after,
+.coffee_top_page .area-botton a:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: -2em;
+	transform: translateY(-50%);
+	width: 60px;
+	height: 2px;
+	background-color: #f8e8bb;
+	transition: 0.3s;
+}
+
+.coffee_top_page .button006 a:hover:before,
+.coffee_top_page .button006 a:hover:after,
+.coffee_top_page .area-botton a:hover:before,
+.coffee_top_page .area-botton a:hover:after {
+	right: -2.5em;
+}
+
+.coffee_top_page .button006 a:hover,
+.coffee_top_page .area-botton a:hover {
+	background: #2d0d59;
+	color: #d1a3fc;
+}
+
+.coffee_top_page .story-under {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	width: min(1120px, 88vw);
+	margin: 64px auto 0;
+	color: rgb(51, 23, 4);
+}
+
+.coffee_top_page .mountain,
+.coffee_top_page .grass,
+.coffee_top_page .fire {
+	display: flex;
+	gap: 20px;
+	border-top: 2px solid rgb(51, 23, 4);
+	line-height: 1.6;
+	padding: 24px 30px 10px 0;
+}
+
+.coffee_top_page .mountain,
+.coffee_top_page .grass {
+	border-right: 2px solid rgb(51, 23, 4);
+}
+
+.coffee_top_page .grass,
+.coffee_top_page .fire {
+	padding-left: 30px;
+}
+
+.coffee_top_page .mountain-img,
+.coffee_top_page .grass-img,
+.coffee_top_page .fire-img {
+	width: 38px;
+	height: 38px;
+	padding: 6px;
+}
+
+.coffee_top_page .mountain-img-around,
+.coffee_top_page .grass-img-around,
+.coffee_top_page .fire-img-around {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid rgb(51, 23, 4);
+	border-radius: 100%;
+	height: 48px;
+	width: 48px;
+	flex: 0 0 48px;
+	margin-top: 5px;
+}
+
+.coffee_top_page .mountain-title,
+.coffee_top_page .grass-title,
+.coffee_top_page .fire-title {
+	font-weight: 900;
+	margin-bottom: 10px;
+}
+
+.coffee_top_page .mountain-ex,
+.coffee_top_page .grass-ex,
+.coffee_top_page .fire-ex {
+	font-size: 13px;
+	margin-bottom: 0;
+}
+
+.coffee_top_page .originsection,
+.coffee_top_page .ourprosess {
+	padding-top: 95px;
+}
+
+.coffee_top_page .origin {
+	display: flex;
+	align-items: center;
+	gap: 24px;
+	width: min(1120px, 88vw);
+	margin: 0 auto;
+	color: rgb(51, 23, 4);
+}
+
+.coffee_top_page .smalltitle-origin,
+.coffee_top_page .smalltitle-ourprosess {
+	width: 150px;
+	margin-bottom: 0;
+	white-space: nowrap;
+}
+
+.coffee_top_page .image-with-lines {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex: 1;
+}
+
+.coffee_top_page .image-with-lines::before,
+.coffee_top_page .image-with-lines::after {
+	content: "";
+	flex-grow: 1;
+	height: 2px;
+	background-color: rgb(51, 23, 4);
+}
+
+.coffee_top_page .image-with-lines img {
+	width: 34px;
+	height: 34px;
+}
+
+.coffee_top_page .origin-title-ex,
+.coffee_top_page .prosess-main {
+	width: min(1120px, 88vw);
+	margin: 34px auto 0;
+	padding-left: clamp(0px, 10vw, 190px);
+	color: rgb(51, 23, 4);
+}
+
+.coffee_top_page .origin-title,
+.coffee_top_page .prosess-title {
+	font-size: clamp(30px, 3.3vw, 46px);
+	font-weight: 800;
+	line-height: 1.25;
+	margin-bottom: 18px;
+}
+
+.coffee_top_page .origin-ex,
+.coffee_top_page .prosess-ex {
+	line-height: 1.85;
+	font-size: 15px;
+}
+
+.coffee_top_page .area {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 36px;
+	width: min(1120px, 88vw);
+	margin: 70px auto 0;
+	color: rgb(51, 23, 4);
+}
+
+.coffee_top_page .brazil,
+.coffee_top_page .COLUMBIA,
+.coffee_top_page .ETHIOPIA {
+	position: relative;
+	padding-right: 34px;
+	padding-bottom: 8px;
+	border-right: 2px solid rgb(51, 23, 4);
+}
+
+.coffee_top_page .ETHIOPIA {
+	border-right: 0;
+}
+
+.coffee_top_page .brazil-pct,
+.coffee_top_page .COLUMBIA-pct,
+.coffee_top_page .ETHIOPIA-pct {
+	width: 100%;
+	aspect-ratio: 1 / 0.92;
+	object-fit: cover;
+	border-radius: 2px;
+	filter: sepia(0.16) saturate(0.92);
+}
+
+.coffee_top_page .brazil-logo,
+.coffee_top_page .COLUMBIA-logo,
+.coffee_top_page .ETHIOPIA-logo {
+	width: 42px;
+	height: 42px;
+	margin: 24px auto 0;
+}
+
+.coffee_top_page .brazil-name,
+.coffee_top_page .COLUMBIA-name,
+.coffee_top_page .ETHIOPIA-name {
+	font-size: clamp(24px, 2.4vw, 34px);
+	font-weight: 800;
+	text-align: center;
+	letter-spacing: 0.05em;
+	margin: 10px 0 20px;
+}
+
+.coffee_top_page .brazil p,
+.coffee_top_page .COLUMBIA p,
+.coffee_top_page .ETHIOPIA p {
+	line-height: 1.72;
+	font-size: 14px;
+}
+
+.coffee_top_page .elevation,
+.coffee_top_page .prosess,
+.coffee_top_page .flavor {
+	border-top: 2px solid rgb(51, 23, 4);
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 8px 0;
+}
+
+.coffee_top_page .contents {
+	margin-left: auto;
+	text-align: right;
+}
+
+.coffee_top_page .area-botton {
+	display: flex;
+	justify-content: center;
+	margin-top: 52px;
+}
+
+.coffee_top_page .god-img-around {
+	width: min(960px, 88vw);
+	margin: 42px auto 0;
+	position: relative;
+}
+
+.coffee_top_page .god-img {
+	width: 100%;
+	height: 360px;
+	object-fit: cover;
+	border-radius: 4px;
+	filter: sepia(0.18) saturate(0.95);
+}
+
+.coffee_top_page .process-points {
+	position: relative;
+	width: min(960px, 88vw);
+	min-height: 240px;
+	margin: -300px auto 110px;
+	pointer-events: none;
+}
+
+.coffee_top_page .beans,
+.coffee_top_page .beans-02,
+.coffee_top_page .beans-03 {
+	position: absolute;
+}
+
+.coffee_top_page .beans {
+	left: 6%;
+	top: 0;
+}
+
+.coffee_top_page .beans-02 {
+	left: 38%;
+	top: 130px;
+}
+
+.coffee_top_page .beans-03 {
+	left: 67%;
+	top: 28px;
+}
+
+.coffee_top_page .around-01 {
+	border-radius: 50%;
+	border: 2px solid rgb(235, 232, 213);
+	width: 32px;
+	height: 32px;
+	color: rgb(235, 232, 213);
+	position: relative;
+	z-index: 2;
+	background-color: rgba(81, 64, 51, 0.58);
+}
+
+.coffee_top_page .ikon-01 {
+	margin: 0;
+	line-height: 28px;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 800;
+}
+
+.coffee_top_page .beans-ex {
+	border: 2px solid rgb(235, 232, 213);
+	width: 230px;
+	color: rgb(235, 232, 213);
+	margin-left: 28px;
+	margin-top: -12px;
+	font-size: 12px;
+	padding: 12px;
+	background-color: rgba(81, 64, 51, 0.62);
+	backdrop-filter: blur(3px);
+}
+
+.coffee_top_page .beans-subtitle {
+	font-size: 20px;
+	color: rgb(235, 232, 213);
+	text-align: center;
+	margin: 0 0 8px;
+	font-weight: 800;
+	letter-spacing: 0.08em;
+}
+
+.coffee_top_page .beans-ex-box {
+	margin: 0;
+	line-height: 1.65;
+}
+
+@media (max-width: 1100px) {
+	.coffee_top_page .ourstory {
+		gap: 48px;
+	}
+
+	.coffee_top_page .story-under,
+	.coffee_top_page .area {
+		width: min(920px, 92vw);
+		gap: 24px;
+	}
+
+	.coffee_top_page .beans-ex {
+		width: 205px;
+	}
+}
+
+@media (max-width: 860px) {
+	.coffee_top_page .ourstory {
+		flex-direction: column-reverse;
+		padding-top: 60px;
+	}
+
+	.coffee_top_page .storydescription,
+	.coffee_top_page .ourstory-image {
+		width: 100%;
+	}
+
+	.coffee_top_page .storyimage {
+		height: 420px;
+	}
+
+	.coffee_top_page .story-under,
+	.coffee_top_page .area {
+		grid-template-columns: 1fr;
+	}
+
+	.coffee_top_page .mountain,
+	.coffee_top_page .grass,
+	.coffee_top_page .fire,
+	.coffee_top_page .brazil,
+	.coffee_top_page .COLUMBIA,
+	.coffee_top_page .ETHIOPIA {
+		border-right: 0;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.coffee_top_page .origin,
+	.coffee_top_page .origin-title-ex,
+	.coffee_top_page .prosess-main {
+		width: 92vw;
+		padding-left: 0;
+	}
+
+	.coffee_top_page .process-points {
+		position: static;
+		display: grid;
+		gap: 18px;
+		margin: 22px auto 80px;
+		min-height: auto;
+	}
+
+	.coffee_top_page .beans,
+	.coffee_top_page .beans-02,
+	.coffee_top_page .beans-03 {
+		position: static;
+	}
+
+	.coffee_top_page .beans-ex {
+		width: 100%;
+		margin-left: 0;
+		margin-top: 8px;
+	}
+}
