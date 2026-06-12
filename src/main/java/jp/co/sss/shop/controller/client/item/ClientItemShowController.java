@@ -152,46 +152,23 @@ public class ClientItemShowController {
 
 		return "client/item/list";
 	}
+	
 	/**
-	 * 商品一覧画面 表示処理
-	 *
-	 * @param  id   商品ID   model   Viewとの値受渡し  session ログインユーザー
-	 * @return ""client/item/detail" 商品の詳細画面
+	 * コーヒーマップ表示
 	 */
-	//	@RequestMapping(path = "/client/item/list/{sortType}", method = RequestMethod.GET)
-	//	public String beansList(@PathVariable Integer sortType,@RequestParam ("categoryId")Integer categoryId ,Model model, HttpSession session) {
-	//		List<Item> itemList = null;
-	//		if(categoryId == 0) {
-	//			itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
-	//		}else if(categoryId == 1) {
-	//			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
-	//		}else if(categoryId == 2) {
-	//			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
-	//		}else if(categoryId == 3) {
-	//			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
-	//		}else if(categoryId == 4) {
-	//			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
-	//		}else if(categoryId == 5) {
-	//			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
-	//		}else if(categoryId == 6) {
-	//			itemList = itemRepository.findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(0, categoryId);
-	//		}
-	//		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
-	//
-	//		model.addAttribute("items", itemBeanList);
-	//		return "client/item/list";
-	//	}
-	//	
-	//	@RequestMapping(path = "/client/item/list/1", method = RequestMethod.POST)
-	//	public String beansListPath(@PathVariable Integer sortType ,Model model, HttpSession session) {
-	//		List<Item> itemList = null;
-	////		List<Item> itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
-	//		itemList = itemRepository.findByDeleteFlagOrderByInsertDateDesc(0);
-	//
-	//		List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
-	//
-	//		model.addAttribute("items", itemBeanList);
-	//		return "client/item/list";
-	//	}
+	@RequestMapping(path = "/client/item/map", method = RequestMethod.GET)
+	public String showMap(Model model) {
+
+	    // 削除されていない商品を取得
+	    List<Item> itemList =
+	            itemRepository.findByDeleteFlagOrderByInsertDateDesc(Constant.NOT_DELETED);
+
+	    // Bean変換
+	    List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
+
+	    model.addAttribute("mao·Items", itemBeanList);
+
+	    return "client/item/list";
+	}
 
 }
