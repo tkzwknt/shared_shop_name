@@ -135,5 +135,23 @@ public class ClientItemShowController {
 		model.addAttribute("items", itemBeanList);
 		return "client/item/list";
 	}
+	
+	/**
+	 * コーヒーマップ表示
+	 */
+	@RequestMapping(path = "/client/item/map", method = RequestMethod.GET)
+	public String showMap(Model model) {
+
+	    // 削除されていない商品を取得
+	    List<Item> itemList =
+	            itemRepository.findByDeleteFlagOrderByInsertDateDesc(Constant.NOT_DELETED);
+
+	    // Bean変換
+	    List<ItemBean> itemBeanList = beanTools.copyEntityListToItemBeanList(itemList);
+
+	    model.addAttribute("mao·Items", itemBeanList);
+
+	    return "client/item/list";
+	}
 
 }
