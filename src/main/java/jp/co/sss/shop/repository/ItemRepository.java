@@ -58,5 +58,6 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 	 * @return 商品エンティティ
 	 */
 	List<Item> findByDeleteFlagOrderByInsertDateDesc(Integer deleteFlag);
+	List<Item> findByDeleteFlagAndCategoryIdOrderByInsertDateDesc(Integer deleteFlag, Integer categoryId);
 
 }
